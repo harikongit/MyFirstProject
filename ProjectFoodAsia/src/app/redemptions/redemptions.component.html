@@ -1,0 +1,225 @@
+
+
+
+<!-- My Redemptions -->
+<div  id="main">
+
+<div class="page_title text-center">
+      <h2>My Vouchers</h2>
+    </div>
+    <div class="container subc_tabs" *ngIf="noplansflag == false" id="filter">
+        <div class="row" alink="color: #066b24;">
+            <div [class.high1]="clickA" style="cursor:pointer" class="col-4 sub_tabs col-sm-2  col-lg-2  offset-sm-3 offset-lg-3" ><a [class.high]="clickA" (click)="OnFilter('All')">All</a></div>
+            <div [class.high1]="clickO" style="cursor:pointer" class="col-4 sub_tabs col-sm-2  col-lg-2" ><a  (click)="OnFilter('Ready to Redeem')">Ready to Redeem</a></div>
+            <div [class.high1]="clickW" style="cursor:pointer" class="col-4 sub_tabs col-sm-2  col-lg-2" ><a  (click)="OnFilter('Redeemed')">Redeemed</a></div>
+            <!-- <div [class.high1]="clickG" style="cursor:pointer" class="col-sm-3  col-lg-2" ><a  (click)="OnFilter('Completed')">Completed</a></div> -->
+            <!-- <div [class.high1]="clickC" style="cursor:pointer" class="col-sm-2  col-lg-2" ><a  (click)="OnFilter('Cancelled')">Cancelled</a></div> -->
+        </div>
+    </div>
+
+
+<!-- message -->
+<p *ngIf="noplansflag == true" style="font-size: 12pt; text-align: center; font-family: 'Roboto','Open Sans Condensed', 'karla',sans-serif;" >You have not subscribed to any products yet. Go to <a [routerLink]="['/scheme/addproducts']">All Deals</a> to subcribe a product. </p>
+
+<div  *ngIf="vouchers" >
+  <div class="container text-center" *ngFor="let vou of vouchers; let i = index"  >
+
+  <!-- <div class="container" id="main" > -->
+  
+      <!--  Voucher records -->
+      <div class="container "   >
+
+        <div class="subcr_outer">
+                <div class="subcr_inner">
+
+                  <div class="row">
+                    <div class="col-md-12">
+
+                                 <div class="sub_head">
+                           <div class="row">
+                             <div class=" col-12 col-sm-6 text-left" >
+                                <span class="sub_mernames" style=" font-size: 14pt; font-weight: normal; text-transform: capitalize"> <b> <img src="assets/imgs/fa-logo.png">  {{ vou.merchantName }} </b>-    {{ vou.productName }}</span>
+                               
+                               </div>
+
+                        
+
+                                <div class="col-12 col-sm-6 text-right" style=" font-size: 11pt; " id="right">
+                                    <b>Payment Frequency:</b> <span style="color:#6fad20; text-transform: capitalize"> {{vou.freq }}</span>
+                                </div>
+                           </div>
+                       </div>
+
+
+                     </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="row mb-3 pad1 clearfix">
+          <div class="col-sm-3">
+            
+           <!--  <div class=" text-center" style="font-weight: bold; font-size: 10pt; padding-bottom: 10px">
+              <div class="col">{{ vou.merchantName }}</div>
+            </div> -->
+            <img class=" borderimg" src="{{ vou.imageURL }}" height="100" width="150"  >
+             <div><a class="edit" style="font-size: 7pt ; color: #007bff" role="button" href="#" data-toggle="modal" data-target="#terms"  (click)="OnTerm(vou.termsAndconditions)">Product Details with T's and C's</a></div>
+            <!-- <div style="  font-size: 10pt;">{{ vou.name }}</div> -->
+            <!-- <div *ngIf="voucher.goalStatus != 'null'" style="font-size: 10pt; color: #007bff; font-weight: bold"><label>{{ voucher.goalStatus }}</label></div> -->
+          </div>
+
+
+          <!-- col2  -->
+          <div class="col-12 col-md-3 subcribe_info" style="padding-right: 0;">
+             <label> <i class="fa fa-tags" aria-hidden="true"></i><b>Subscription ID:</b>  {{ vou.ActNo }}</label>
+             <label><i class="fa fa-credit-card" aria-hidden="true"></i><b>Voucher Amount* : </b> ${{ vou.balAmount }} </label>
+
+            <p style="font-size: 12px;color: #000;">* Balance Voucher Amount updated every 24hrs.</p>  
+            
+                            
+          </div>  
+
+           <div class="col-12 col-md-3 subcribe_info" >
+
+
+                       <label><i class="fa fa-hourglass-half" aria-hidden="true"></i><b>Voucher Status : </b> {{ vou.RedStatus }}  </label>
+                     
+                        <div [hidden]="vou.InstAmount  == 10" ><a  style="padding-left: 10px; padding-top: 10px; padding-bottom: 5px;  font-size: 10pt; color: #007bff" role="button" href="#" data-toggle="modal" data-target="#voucherData" (click)="getDetails(vou)" >My Redemptions</a></div>
+                        
+                    
+
+           </div> 
+           
+
+          <!-- col-3 -->
+          <div class="col-sm-3  col-lg-3 ">
+            
+              <!-- start of vouchers -->
+              <div  >
+      
+                  <!-- If paid redeemed refunded or partially redeemed -->
+                  <div  *ngIf="vou.RedStatus == 'Ready to Redeem'  ">
+                        
+                      <!-- When status is In Progress, Upcoming or Cancelled  -->
+                      <div  style="font-size: 9pt">Payment Date: {{ vou.InstDate }} </div>
+                      <!-- <div  style="font-size: 9pt">Voucher ID: {{ vou.voucherId }}</div> -->
+                      <!-- <div  style="font-size: 9pt;">Payment Status: {{ vou.payStatus }} </div> -->
+                      <div ><ngx-barcode class="barcode"  [bc-value]="vou.merchantVoucherId" [bc-width]="1.5" [bc-height]="50"  ></ngx-barcode></div>
+                     <div class="voch_card">{{ vou.merchantVoucherId }}</div>
+                    </div>
+
+                    <div  *ngIf="vou.RedStatus == 'Redeemed' || vou.RedStatus == 'Refunded' ">
+                        <div class="vc_used">
+                          <div *ngIf="vou.RedStatus == 'Redeemed'" class="usd_txt">Redeemed</div>
+                          <div *ngIf="vou.RedStatus == 'Refunded' " class="usd_txt">Refunded</div>
+                           <!-- When status is In Progress, Upcoming or Cancelled  -->
+                      <div  style="font-size: 9pt">Payment Date: {{ vou.InstDate }} </div>
+                      <!-- <div  style="font-size: 9pt">Voucher ID: {{ vou.voucherId }}</div> -->
+                      <!-- <div  style="font-size: 9pt;">Payment Status: {{ vou.payStatus }} </div> -->
+                      <div><ngx-barcode class="barcode"  [bc-value]="vou.merchantVoucherId" [bc-width]="1.5" [bc-height]="50"  ></ngx-barcode></div>
+                     <div class="voch_card">{{ vou.merchantVoucherId }}</div>
+                        </div>
+                     
+                    </div>
+            </div>
+        
+          </div>
+        
+          
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 ">
+                    <label><i class="fa fa-map-marker" aria-hidden="true"></i> <b> Location : </b><span style="font-size: 11px;color: #000;">791 Bovaird Dr W suite 12-14, Brampton, ON L6X 5C5 <a  href="https://www.google.co.in/maps/place/FoodAsia/@43.6880593,-79.8068105,17z/data=!3m1!4b1!4m5!3m4!1s0x882b15b7d6256adf:0xd718bd9e0cfb52!8m2!3d43.6880554!4d-79.8046218" target="_blank"> Map </a></span></label>
+            </div>
+        </div>
+
+                    </div>
+                  </div>
+                 </div>
+         </div>             
+        
+        <!-- end of row -->
+      <!-- </div> -->
+      <!-- end of inner container -->
+      </div>
+      <!-- end of outer container -->
+    </div>
+</div>
+</div>
+
+    <!-- footer -->
+<app-footer class="footer" *ngIf="vouchers" style="bottom:0; width:100%;  "></app-footer>
+<app-footer class="footer" *ngIf="!vouchers" style="bottom:0; width:100%; position: fixed  "></app-footer>
+
+    
+<!-- Voucher Data-->
+<div *ngIf="vouData" class="modal fade" id="voucherData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content" >
+            <div class="modal-header modheader text-center" style="background-color: #6fad20">
+               <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">My Redemptions</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <span style=" font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Merchant Name:</label>  {{ vouData[5] }}</span> <br>
+                <!-- <span style="font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Merchant:</label>  merchnt </span> <span style="padding-left: 12px; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; font-size: 11pt"><label style="font-weight: bold">Product:</label>  product  </span> -->
+                <!-- Table definition -->
+                <div class = "container row1 text-center" style="margin-top: 15px" >
+                  <table class="table table-sm pop_tables table-responsive " >
+                    <thead>
+                        <tr table-info >
+                    
+                            <th>Transaction Date</th>
+                            <th>Subscription ID </th>
+                            <th>Amount</th>
+                            <th>Amount Redeemed</th>
+                             <th>Balance</th>
+                            <th>Voucher ID</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="vouData[1]">
+                   
+                            <td> {{ vouData[1] }}</td>
+                            <td> {{ vouData[0] }} </td>
+                            <td> ${{ vouData[6] }}</td>
+                            <td> ${{ vouData[2] }}</td>
+                             <td>${{ vouData[3] }}</td>
+                            <td> {{ vouData[7] }}</td>
+                            
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+  <!-- Terms And Conditions -->
+  <div  class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Terms And Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container row1" >
+                <p class = " row1">{{ tnc }}</p>
+            </div>
+            <!-- <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+</div>
+
+  

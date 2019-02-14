@@ -1,0 +1,29 @@
+.form_secf {
+    background: #fff;
+    margin-bottom: 3%;
+    padding: 15px;
+    border: 1px solid #6fad20;
+    padding-top: 0;
+}
+
+.fsc_title {
+    background: #6fad20;
+    margin: 0 -15px;
+    padding: 5px 15px;
+    color: #fff;
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.form_felds label {
+    display: block;
+    color: #000;
+    font-weight: 500;
+}
+
+.form_felds .form-control {
+    background: #eee;
+    border-radius: 0;
+    border: 1px solid #ddd;
+}
+.btn-outline-secondary{border-color: #ddd;}

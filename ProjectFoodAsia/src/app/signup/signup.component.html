@@ -1,0 +1,512 @@
+
+<app-header></app-header>
+          
+    <div class=" container-fluid img">
+            <!-- <img src="../../assets/imgs/log2.jpg"> -->
+            <div class="container ">
+                <!-- <div class="container col-12 offset-4 form hide ">
+                             <img style="height:650px; width: 800px; background-color: black; opacity: 0.2">
+                        </div> -->
+                <!-- main row -->
+                <div class="row">
+                    <div class="col-12 offset-md-3  col-md-6 offset-lg-6 col-lg-4 col-sm-4">
+
+                        <div class="login_block">
+                    <div class="login_title">
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                        Sign Up
+                    </div>
+                    <div class="login_body">
+                        
+                <form class="form" #f="ngForm" (ngSubmit)="OnSubmit(f)">
+                    <div class="login_filed">
+                        
+                        <div class="form-row">
+        
+                                        <div class="form-group col-sm-6">
+                                            <label for="firstName"> First Name </label>
+                                            <input  placeholder="First Name" type="text" name="fname" ngModel class="form-control col-sm-12" id="firstName" required #fname="ngModel">
+                                            <div class="invalid-feedback" [hidden]="fname.untouched || fname.valid" class="txtsize">
+                                                First Name is required
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-6 ">
+                                            <label for="lastName"> Last Name </label>
+                                            <input placeholder="Last Name" type="text" name="lname" ngModel class="form-control col-sm-14" id="lastName" required #lname="ngModel">
+                                            <div class="invalid-feedback" [hidden]="lname.untouched || lname.valid" class="txtsize">
+                                                Last Name is required
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                          <div class="login_filed">          
+                     <!-- mobile no -->
+                      <label for="mobileNo">Mobile Number</label>
+                       <input placeholder="Mobile Number" name="cnum" ngModel class="form-control" id="mobileNo" required #cnum="ngModel">
+        
+                                            <!-- validation messages -->
+        
+                                            <div   class="invalid-feedback" [hidden]="cnum.untouched || cnum.valid" class="txtsize">
+                                                Mobile Number is required
+                                            </div>
+                                     
+                              </div>                      
+
+                             <div class="login_filed">
+
+                                 <!-- email id -->
+                                  <label for="emailId">Email ID</label>
+                                      <input placeholder="Email" type="email" name="email" ngModel class="form-control" id="Email" aria-describedby="emailHelp"
+                                                required #email="ngModel">
+        
+                                            <!-- validation Messages -->
+        
+                                            <div class="invalid-feedback" [hidden]="email.untouched || email.valid" class="txtsize">
+                                                A valid email address is required
+                                            </div>
+                            </div>
+                             <div class="login_filed">
+
+                                <!-- password -->
+                                  <label for="password"> Password </label>
+                                  <input placeholder="Password" type="password" name="password" ngModel class="form-control" id="Password" required minlength="6"
+                                                #password="ngModel" (input)="Pass($event)">
+        
+                                            <!-- validation messages -->
+        
+                                            <div class="invalid-feedback" [hidden]="password.untouched || password.valid" class="txtsize">
+                                                Password is required (6 or more characters with at least one number)
+                                            </div>
+
+                                     
+                            </div>   
+                            <div class="login_filed">
+                                <!-- repeat password -->
+                                 <label for="password1"> Re-enter Password </label>
+                                  <input placeholder="Re-enter Password" type="password" name="password1" ngModel class="form-control" id="password1" required
+                                                #password1="ngModel" (input)="Pass2($event)">
+                                    
+                                     <!-- validation messages -->
+        
+                                            <div style="color: red" class="invalid-feedback" [hidden]="password1.untouched || password1.valid" class="txtsize">
+                                                Please Re-Enter Password
+                                            </div>
+                                            <div style="color: red" class="invalid-feedback" [hidden]="password1.untouched || password1.pristine" class="txtsize">
+                                                {{ message }}
+                                            </div>
+
+                             </div>   
+
+                              <div class="login_filed">
+                                <div class="text-center">
+                                                <button type="submit" [disabled]="!f.valid || click==false" style="background: #4b4a4a;border-color: #4b4a4a;  font-weight: bold" class="btn btn-success button2" >Create Account</button>
+                                            </div>
+
+                               </div> 
+
+
+                               <div class="text-center">
+                                       <small id="emailHelp" style="color: black; " class="form-text"> By clicking Create an Account, you agree to our </small>
+                                </div>
+                   <div class="text-center">
+                              <small id="emailHelp" style="color: black;  " class="form-text ">
+                                                    <a style=" color: blue;  cursor: pointer" role="button" href="#" data-toggle="modal" data-target="#licenseAgreement" ><i>Terms and Conditions </i></a> and
+                                                    <a style=" color: blue;  cursor: pointer" role="button" href="#" data-toggle="modal" data-target="#privacyPolicy" ><i>Privacy Policy</i></a>
+                                                </small>
+                                            </div>
+                                             <!-- login buttons -->
+                      <div class="form-group regitext_box">
+                                        <div class="row ">
+                                            <div class="text-center col-sm-12"  >
+                                                <small id="emailHelp" class="form-text ">Already have an Account?</small>
+                                                 <button style="background-color:#057c9b; color: white; font-weight: bold" type="submit" class="btn btn-default"  (click)=" OnLog()">Sign In</button>
+                                            </div>
+                                        </div>
+                                         
+                                    </div>
+
+                    </div>
+
+
+
+                          
+                </form>
+                    </div>
+                </div>
+</div>
+</div>
+                         
+          
+        </div>
+        </div>
+        <app-footer class="foot" style="bottom:0; width:100%;"></app-footer>
+
+
+        <!-- License Agreement -->
+<div  class="modal fade" id="licenseAgreement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #057c9b">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Terms and Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div align="center" style="font-size: 16px"><b> Terms and conditions </b></div><br>
+
+            <div style="font-size: 14px"><b> Terms of use </b></div><br>
+
+            <div style="font-size: 14px"><b> About Us </b></div>
+            <p style="font-size: 14px">
+                    ANTWALLET is an online market place where customers can find attractive deals that local 
+                    merchants offer. It offers a platform to connect customers and merchants where both benefit 
+                    from each other in a variety of ways. Customer can find amazing offers to save on instant buys, 
+                    subscribe to plans with term payments that’s affordable and cherish one’s dreams.
+            </p>
+         
+            <div style="font-size: 12px"><b>BY USING THE WEB SITE, YOU AGREE TO THESE TERMS AND CONDITIONS AND 
+                ALL POLICIES ON THIS WEB SITE; IF YOU DO NOT AGREE, PLEASE DO NOT USE THE WEBSITE</b></div>
+            <p style="font-size: 14px">
+                    Before buying a Voucher you must register and open an account with us. We cannot issue a 
+                    voucher to you without knowing vital information about you, specifically, your identity, 
+                    your payment method and details, and your contact information.
+            </p>
+            <p style="font-size: 14px">
+                    The information on this legal notice may be updated / revised / edited without notice at any time. 
+                    As such, we recommend that you review this information periodically to ensure that you are up-to-date 
+                    with our legal disclaimers and all terms & conditions, as they are binding and address vital rules, 
+                    regulations and stipulations. Certain provisions of this legal notice may be superseded by explicitly 
+                    designated legal notices or terms located on particular pages on the Website.
+            </p>
+
+            <div style="font-size: 14px"><b> Modified Terms </b></div>
+            <p style="font-size: 14px">
+                    ANTWALLET reserves the right at all times to discontinue or modify any of our Terms of Use 
+                    and/or our Privacy Policy as we deem necessary or desirable. Such changes may include, among 
+                    other things, the adding of certain fees or charges. If ANTWALLET makes any substantial 
+                    changes, we will notify you by sending you an e-mail to the e-mail address that is registered 
+                    with your account and/or by posting notice of the change on the Site. Any changes to these Terms 
+                    of Use will be effective upon the earlier of our dispatch of an e-mail notice to you or our 
+                    posting of notice of the changes on our Site, provided that these changes will not apply to 
+                    Vouchers purchased prior to the effective date of such changes. These changes will be effective 
+                    immediately for new users of our Site and any Vouchers purchased by such new users. We suggest to 
+                    you, therefore, that you re-read this important notice containing our Terms of Use and Privacy 
+                    Policy from time to time in order that you stay informed as to any such changes. Any use of the 
+                    Site by End User after such notice shall be deemed to constitute acceptance by End User of such 
+                    modifications.
+            </p>
+
+            <div style="font-size: 14px"><b> General </b></div>
+            <p style="font-size: 14px">
+                    The Site provides an interactive online service operated by ANTWALLET. on the World Wide Web of 
+                    the Internet (the “Web”), consisting of information services, content and transaction capabilities 
+                    facilitated through ANTWALLET, affiliates of ANTWALLETor merchants (“Merchants”) offering 
+                    vouchers for sale (“Vouchers”) which may be exchanged for goods/services at Merchants and other 
+                    third parties.
+            </p>
+            <p style="font-size: 14px">
+                    This Agreement sets forth the terms and conditions that apply to the use of this Site by the End User. 
+                    By using this Site (other than to read this Agreement for the first time), End User agrees to comply 
+                    with all of the terms and conditions hereof. The right to use this Site is personal to End User and 
+                    is not transferable to any other person or entity. End User shall be responsible for protecting the 
+                    confidentiality of End User’s password, if any. End User acknowledges that, although the Internet 
+                    is often a secure environment, sometimes there are interruptions in service or events that are beyond 
+                    the control of ANTWALLET, and ANTWALLET shall not be responsible for any data lost while 
+                    transmitting information on the Internet. While it is ANTWALLET’s objective is to make the Site 
+                    accessible 24 hours per day, 7 days per week, the Site may be unavailable from time to time for any 
+                    reason including, without limitation, routine maintenance. You understand and acknowledge that due to 
+                    circumstances both within and outside of the control of ANTWALLET, access to the Site may be 
+                    interrupted, suspended or terminated from time to time.
+            </p>
+            <p style="font-size: 14px">
+                    ANTWALLET shall have the right at any time to change or discontinue any aspect or feature of the Site, 
+                    including, but not limited to, content, hours of availability and equipment needed for access or use. 
+                    Further, ANTWALLET may discontinue disseminating any portion of information or category of information, 
+                    may change or eliminate any transmission method and may change transmission speeds or other signal 
+                    characteristics.
+            </p>
+
+            <div style="font-size: 14px"><b> Copyright and Trademarks </b></div>
+            <p style="font-size: 14px">
+                    Everything located on or in this Site, is the exclusive property ofANTWALLET, or used with express 
+                    permission of the copyright and/or trademark owner. Any copying, distributing, transmitting, posting, 
+                    linking, deep linking, or otherwise modifying of this site or any of the microsites without the express 
+                    written permission of ANTWALLET, Is strictly prohibited. Any violation of this policy may result in a 
+                    copyright, trademark or other intellectual property right infringement that may subject End User to civil 
+                    and/or criminal penalties.
+            </p>
+            <p style="font-size: 14px">
+                    This Site and any Microsites contain copyrighted material, trademarks and other proprietary information, 
+                    including, but not limited to, text, software, photos, video, graphics, music and sound, and the entire 
+                    contents of the Site are protected by copyright as a collective work under the Canadian copyright laws. 
+                    ANTWALLET owns a copyright in the selection, coordination, arrangement and enhancement of such 
+                    content, as well as in the content original to it. End User may not modify, publish, transmit, participate 
+                    in the transfer or sale, create derivative works, or in any way exploit any of the content, in whole or 
+                    in part. End User may download, print, and/or save copyrighted material for End User’s personal use only. 
+                    Except as otherwise expressly stated under copyright law, no copying, redistribution, retransmission, 
+                    publication or commercial exploitation of downloaded material without the express permission of ANTWALLET 
+                    or the copyright owner is permitted. If copying, redistribution or publication of copyrighted material 
+                    is permitted, no changes in or deletion of author attribution, trademark legend or copyright notice 
+                    shall be made. End User acknowledges that he/she/it does not acquire any ownership rights by downloading 
+                    copyrighted material. Trademarks that are located within or on the Site or a Microsite otherwise owned 
+                    or operated in conjunction with ANTWALLET shall not be deemed to be in the public domain but rather 
+                    the exclusive property of ANTWALLET, unless such site is under license from the Trademark owner 
+                    thereof, in which case such license is for the exclusive benefit and use of ANTWALLET unless 
+                    otherwise stated.
+            </p>
+            <p style="font-size: 14px">
+                    End User shall not upload, post or otherwise make available on this Site any material protected by copyright, 
+                    trademark or other proprietary right without the express permission of the owner of the copyright, 
+                    trademark or other proprietary right. ANTWALLET does not have any express burden or responsibility 
+                    to provide End User with indications, markings or anything else that may aid End User in determining 
+                    whether the material in question is copyrighted or trademarked. End User shall be solely liable for any 
+                    damage resulting from any infringement of copyrights, trademarks, proprietary rights or any other harm 
+                    resulting from such a submission. By submitting material to any public area of this Site or any Microsite, 
+                    End User warrants that the owner of such material has expressly granted ANTWALLET the royalty-free, 
+                    perpetual, irrevocable, non-exclusive right and license to use, reproduce, modify, adapt, publish, 
+                    translate and distribute such material (in whole or in part) worldwide and/or to incorporate it in 
+                    other works in any form, media or technology now known or hereafter developed for the full term of any 
+                    copyright that may exist in such material. End User also permits any other end user to access, view, 
+                    store or reproduce the material for that End User’s personal use. End User hereby grants ANTWALLET 
+                    the right to edit, copy, publish and distribute any material made available on this Site or any 
+                    Microsite by End User.
+            </p>
+            <p style="font-size: 14px">
+                    The foregoing provisions of Section 5 apply equally to and are for the benefit of ANTWALLET, 
+                    its subsidiaries, affiliates, Merchants and its third party content providers and licensors and 
+                    each shall have the right to assert and enforce such provisions directly or on its own behalf.
+            </p>
+
+            <div style="font-size: 14px"><b> Access to the Website </b></div>
+            <p style="font-size: 14px">
+                    antwallet.ca strives to maintain the Website’s full functionality 24 hours per day. However, 
+                    we shall not be liable if the Website is unavailable for any reason for any period of time. Due to 
+                    many variable factors, access to the content of the Website, or to the Website itself may be 
+                    unavailable at any time without notice in cases of system failure or system compromise, periodic 
+                    maintenance, repairs, or any reasons beyond ANTWALLET direct control.
+            </p>
+
+            <div style="font-size: 14px"><b> Revisions to these Terms and Conditions </b></div>
+            <p style="font-size: 14px">
+                    We reserve the right to revise / edit / change these Terms and Conditions from time-to-time as we 
+                    see fit and depending on market conditions such that all stakeholders of ANTWALLETare protected 
+                    appropriately. We do this to ensure that our business, changes in technology, laws, and regulatory 
+                    requirements are upheld and adhered to as closely as possible.
+            </p>
+            <p style="font-size: 14px">
+                    It is your responsibility to check these terms and conditions from time-to-time in order to ensure 
+                    that you are aware of any and all changes that have been made. We are not responsible for notifying 
+                    all users of our Website of any changes made in our Terms and Conditions. Some notices that are 
+                    published elsewhere on our Website may supersede the statements outlined in these Terms and Conditions. 
+                    Those notices will be considered binding between you and ANTWALLET.
+            </p>
+
+            <div style="font-size: 14px"><b> Timely Delivery of Products/Services </b></div>
+            <p style="font-size: 14px">
+                    The Merchant shall be responsible for ensuring the Deal and the goods and/or services provided thereunder 
+                    comply with all applicable laws.
+            </p>
+            <p style="font-size: 14px">
+                    ANTWALLET obligations under these Terms and Conditions are solely to act as an intermediary, which issues 
+                    Vouchers for a Deal that Buyers redeem at the specified Merchant. ANTWALLET does not deliver such 
+                    products and/or services nor is it responsible for any actions and/or damages that ensue as a result 
+                    due to the delivery (or the lack thereof) of the products and/or services by the Merchant. The Merchant 
+                    is solely responsible for supplying such products and/or services and ensuring that all redeemed 
+                    Vouchers in respect of the product and/or service are updated through ANTWALLET’s merchant 
+                    website(merchant.antwallet.ca). 
+                    <!-- To ensure more security for customer, one-time-passwords are 
+                    generated when customer redeems their vouchers, and this one-time-password need to be used by merchant 
+                    to authenticate the customer while redeeming products/services. Failure to do so will result in all 
+                    ensuing potential losses being encumbered by the Merchant. -->
+            </p>
+            <p style="font-size: 14px">
+                    You agree to indemnify and hold antwallet.ca, its officers, directors, shareholders, predecessors, 
+                    successors in interest, employees, agents, subsidiaries and affiliates, harmless from any demands, 
+                    loss, liability, claims or expenses (including attorneys’ fees), made against antwallet.ca by 
+                    you, or any third party due to or arising out of or in connection with your use of the Website, the 
+                    purchased Voucher, and/or the provision/delivery of products and/or services by the Vendor to the 
+                    maximum extent permissible by law. Neither ANTWALLET nor its officers, employees or Affiliates 
+                    may be held liable whether in relation to contract, warranty, tort (including negligence), product 
+                    liability, tax matters or any other form of liability for any claim, damage or loss, arising from or
+                    relating to the provision of all or any goods or services sold or agreed to be supplied pursuant to 
+                    the Deal.
+            </p>
+            <p style="font-size: 14px">
+                    We may provide links on our Website to the websites of other companies, whether affiliated with us or not. 
+                    We cannot give any undertaking, that products you purchase from third party sellers, or from companies 
+                    to whose website we have provided a link on our Website, will be of satisfactory quality, and any such
+                     warranties are disclaimed by us absolutely. This disclaimer does not affect your statutory rights 
+                     against the third party seller and/or Merchant. As part of orderly delivery of service, we may
+                      disclose your customer information related to the Voucher that you have purchased for the Deal to 
+                      the Merchant.
+            </p>
+
+            <div style="font-size: 14px"><b> Price Determination and Payment Processing </b></div>
+            <p style="font-size: 14px">
+                    In cases where there is a pricing error in relation to the Deal which could have reasonably been 
+                    recognized by you as a mis-pricing then we have the right to cancel any Voucher issued in respect 
+                    of the Deal and issue to you a full refund in respect of the same.
+            </p>
+            <p style="font-size: 14px">
+                    Payment for all Deals and/or Vouchers may be made only by a major debit/credit card. When you offer 
+                    to subscribe for Deals and/or Vouchers, we will pre-authorize your debit/credit card but will only 
+                    charge your debit/credit card on scheduled dates as per your subscribed plan.
+            </p>
+
+            <div style="font-size: 14px"><b> Questions or Concerns </b></div>
+            <p style="font-size: 14px">
+                    If you have any questions or concerns about these Terms and Conditions or any part 
+                    of ANTWALLET policies please contact us directly via email at: support@antwallet.ca 
+                    or through form in Contact page.
+            </p>
+            <p style="font-size: 14px">
+                    We will respond to your query within 5 business days.
+            </p>
+        </div>
+      </div>
+    </div> 
+</div>
+
+<!-- Privacy Policy -->
+<div  class="modal fade" id="privacyPolicy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #057c9b">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Privacy Policy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div align="center" style="font-size: 16px"><b> Privacy Policy </b></div><br>
+                <p style="font-size: 14px">
+                        PLEASE READ THIS PRIVACY POLICY CAREFULLY. BY ACCESSING OR USING OUR WEBSITE, YOU ACKNOWLEDGE 
+                        THAT YOU HAVE READ, UNDERSTAND, AND AGREE TO BE BOUND TO ALL THE TERMS OF THIS PRIVACY POLICY 
+                        AND OUR WEBSITE TERMS OF USE. IF YOU DO NOT AGREE TO THESE TERMS, EXIT THIS PAGE AND DO NOT 
+                        ACCESS OR USE THE WEBSITE.
+                </p>
+
+                <div style="font-size: 14px"><b> Introduction </b></div>
+                <p style="font-size: 14px">
+                        ANTWALLET collects information in different ways from users who access the various parts of our 
+                        Services and the network of web sites accessible through our Service. We use this information primarily 
+                        to provide a customized experience as you use our Services. We may disclose personal information 
+                        collected if we have received your permission beforehand or in very special circumstances, such as 
+                        when we believe that such disclosure is required by law or other special cases described below.
+                </p>
+
+                <div style="font-size: 14px"><b> Changes to Privacy Policy </b></div>
+                <p style="font-size: 14px">
+                        If we decide to change our privacy policy, we will post those changes to this privacy statement, the 
+                        home page, and other places we deem appropriate so that you are aware of what information we collect, 
+                        how we use it, and under what circumstances, if any, we disclose it.
+                </p>
+                <p style="font-size: 14px">
+                        We reserve the right to modify this privacy statement at any time, so please review it frequently. If 
+                        we make material changes to this policy, we will notify you here, by email, or by means of notice on 
+                        our home page.
+                </p>
+
+                <div style="font-size: 14px"><b> Registration </b></div>
+                <p style="font-size: 14px">
+                        Users are asked to provide certain personal information when they sign up for our Services including 
+                        name, address, telephone number, email address, billing information (such as a debit/credit card number). 
+                        The personal information collected from users during the registration process is used to manage each 
+                        individual’s account (such as those used for security and billing purposes). ANTWALLET may also 
+                        generate non-identifying and aggregate profiles from personal information Users provide during 
+                        registration. No personally identifiable information will be disclosed to the public.). As explained 
+                        in more detail below, we may use this aggregate and non-identifying information to further enhance our 
+                        services. We collect, maintain and use personal information you have voluntarily submitted to process, 
+                        mail or email, vouchers and/or offers (including those from partner and/or affiliate marketers), 
+                        contact you, including via e¬mail or digital notification to respond to your comments or requests for 
+                        information. We will also use it to communicate with you about our service in general, and send any 
+                        weekly or daily newsletters you’ve subscribed to, as well as sponsored and/or special offers vial mail, 
+                        email or digital advertising on behalf of carefully selected partners in regards to offers, promotions, 
+                        and new products that may be of interest to you, unless you choose to opt out of these mailings.
+                </p>
+
+                <div style="font-size: 14px"><b> Disclosure of Personal Information </b></div>
+                <p style="font-size: 14px">
+                        It is ANTWALLET policy not to use or share the personal information about its users. However, ANTWALLET 
+                        may disclose personal information about Visitors or Customers, or information regarding your use of the 
+                        Services or Web sites accessible through our Services, if you have expressly instructed us to do so or 
+                        for any reason if, in our sole discretion, we believe that it is reasonable to do so, including: to 
+                        satisfy laws, such as the Electronic Communications Privacy Act, regulations, or governmental or legal 
+                        requests for such information; to disclose information that is necessary to identify, contact, or bring 
+                        legal action against someone who may be violating our Terms of Service or other user policies; to 
+                        operate the Services properly; or to protect ANTWALLET and our Customers. We may share your 
+                        information with our Merchants. We may share your Personal Information with a Merchant so they can 
+                        contact you regarding a transaction.
+                </p>
+
+                <div style="font-size: 14px"><b> Responses to Email Inquiries </b></div>
+                <p style="font-size: 14px">
+                        When Visitors or Customers send email inquiries to ANTWALLET, the return email address is used to 
+                        answer the email inquiry we receive. ANTWALLET does not use the return email address for any other 
+                        purpose and does not share the return email address with any third party.
+                </p>
+                <p style="font-size: 14px">
+                        We may periodically conduct both business and user surveys. We encourage our users to participate in 
+                        these surveys because they provide us with important information that helps us improve the types of 
+                        services we offer and how we provide them to you. Your personal information and responses will remain 
+                        strictly confidential, even if the survey is conducted by a third party. Participation in our customer 
+                        surveys is voluntary.
+                </p>
+                <p style="font-size: 14px">
+                        We take the information we receive from individuals responding to our Customer Surveys and aggregate it 
+                        to create broad, generic responses to the survey questions (such as gender, age, residence, hobbies, 
+                        education, employment, industry sector, or other demographic information). We then use the aggregate 
+                        information to improve the quality of our services, and to develop new services and products. This 
+                        aggregate non-personally identifying information may be shared with third parties.
+                </p>
+
+                <div style="font-size: 14px"><b> ANTWALLET Partners and Sponsors </b></div>
+                <p style="font-size: 14px">
+                        Some of ANTWALLET products and services are offered to users in conjunction with a non-affiliated 
+                        partner or sponsor. To provide users some of these products and services, the partner may need to 
+                        collect and maintain personal information. ANTWALLET will share non-identifying and aggregate 
+                        information (except as described above), but not personal information, with such partners in order to 
+                        administer the co-branded products or services offered.
+                </p>
+
+                <div style="font-size: 14px"><b> "Cookies" and How ANTWALLET Uses Them </b></div>
+                <p style="font-size: 14px">
+                        A "cookie" is a small data file that can be placed on your hard drive when you visit certain Web sites. 
+                        antwallet.ca may use cookies to collect, store, and sometimes track information for statistical 
+                        purposes to improve the products and services we provide and to manage our networks. If you are a Member 
+                        (an individual who has an active profile on ANTWALLET, we will use a cookie to save your settings 
+                        and to provide customizable and personalized services. These cookies do not enable third parties to 
+                        access any of your customer information. Non-affiliated partner or sponsors may also use their own 
+                        cookies. We do not control use of these cookies and expressly disclaim responsibility for information 
+                        collected through them.
+                </p>
+                <p style="font-size: 14px">
+                        ANTWALLET recommends that children ask a parent for permission before sending personal information 
+                        to ANTWALLET, or to anyone else online.
+                </p>
+                <p style="font-size: 14px">
+                        Please remember that any information you may disclose in public areas of our web sites or the Internet 
+                        becomes public information. You should exercise caution when deciding to disclose personal information 
+                        in these public areas.
+                </p>
+
+                <div style="font-size: 14px"><b> Our Commitment to Data Security </b></div>
+                <p style="font-size: 14px">
+                        Services and web sites we sponsor or host have security measures in place to protect the loss, misuse, and 
+                        alteration of the information under our control. While we make every effort to ensure the integrity and 
+                        security of our network and systems, we cannot guarantee that our security measures will prevent 
+                        third-party "hackers" from illegally obtaining this information.
+                </p>
+
+                <div style="font-size: 14px"><b> Where to Direct Your Questions About ANTWALLET Privacy Policy </b></div>
+                <p style="font-size: 14px">
+                        If you have any questions about this Privacy Policy or the practices described in it, please 
+                        contact: support@antwallet.ca
+                </p>
+        </div>
+      </div>
+    </div>
+</div>

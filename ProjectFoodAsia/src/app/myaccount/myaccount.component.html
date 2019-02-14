@@ -1,0 +1,61 @@
+<!-- content -->
+
+<div class="container-fluid " style="background-color: #d7d7d7; height: 80vh; padding: 50px; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;" >
+    <div style="text-align: center; font-size: 15pt; font-weight: bold"> My Account Details</div>
+        <div class="row" >
+        
+            <div class="col-12 col-sm-12">
+        
+        
+                <div class="row" >
+                   
+                    <div class="col-12 col-sm-4 col-md-4 text-center"> 
+                        <div class="account_block">
+                            <a [routerLink]="['/profile']">
+                                <img src="assets/imgs/account_icon1.png">
+                             <h5>My Profile </h5>
+                             <p>Edit Name, Edit Cell Number, Add/Edit Address</p>
+                            </a>    
+                        </div>
+                        
+                        
+                    </div>
+
+                    <!-- <div class="col-12 col-sm-4 col-md-4  text-center">
+                          <div class="account_block">
+                            
+                            <a [routerLink]="['/paymentmethod']" >
+                                <img src="assets/imgs/account_icon2.png">
+                             <h5>My Payment Options</h5>
+                             <p>Edit or Add Payment Methods</p>
+                            </a>    
+                        </div>
+ 
+                    </div> -->
+
+                    <div class="col-12 col-sm-4 col-md-4 text-center">
+
+                        <div class="account_block">
+                           
+                            <a [routerLink]="['/order']" >
+                                 <img src="assets/imgs/account_icon3.png">
+                             <h5>My Order History</h5>
+                             <p>My Previous Order</p>
+                            </a>    
+                        </div>
+
+                         
+                    </div>
+
+                    
+                </div>
+                 
+        
+                 
+            </div>
+        </div>
+ </div>
+
+<!-- footer -->
+<app-footer id="web" class="footer" style="bottom:0; width:100%; position: fixed "></app-footer> 
+<app-footer id="web1" class="footer" style="bottom:0; width:100%; "></app-footer>

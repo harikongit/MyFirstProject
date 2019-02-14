@@ -1,0 +1,126 @@
+
+<div style="min-height: 410px">
+<!-- beneficiary List -->
+<div class="container" *ngIf="benefs">
+    <h5 >My Beneficiary Details:</h5> <br>
+    <div style="border:1px solid #494848; background-color:rgb(243, 239, 239); padding: 10px">
+        <div class="row " style="padding-top: 10px; padding-bottom: 10px; padding-left:5px; padding-right:5px" *ngFor="let ben of benefs; let i=index">
+            <div class="col-1 col-sm-1 col-md-1 ">
+                <input type="radio" name="gname" [(ngModel)]="gname" value="{{ ben.gname }}"  (click)="OnSelect(ben)">
+            </div>
+            <div class="col-5 col-sm-4  ">
+                <b>{{ ben.gname }} - {{ ben.relation }}</b>
+            </div>
+            <div class="col-5 col-sm-4  " >
+                <a class="edit" style="color: #007bff;" (click)="OnEdit(ben,i)"  >Edit</a> or <a class="edit"  (click)="OnDelete(ben,i)" style="color: red">Delete</a>
+            </div>
+        </div>
+    </div>
+    <label style="font-size: 8pt">*** Please select one option and click Done</label>
+</div>
+<br>
+
+<!-- Beneficiary Detail -->
+<div class="container" style=" margin-bottom: 60px; ">
+    
+
+    <div style="text-align: right">
+        <button  class="btn btn-default" style="background-color: black; color: white" (click)="OnBack()">Back</button>
+        <button  class="btn btn-success" [disabled]="!selectedBen" style="background-color: #6fad20 " (click)="OnClose()">Done</button>
+        
+    </div>
+    <button  class="btn btn-primary" (click)="addBen()">Add New Beneficiary</button>
+
+    
+    <!-- Beneficiary Edit -->
+    <div  *ngIf="edit == true" style="padding-top: 20px">
+        <!-- <h4>Beneficiary Detail</h4> -->
+        <h6>Editing Beneficiary : {{ editBen.gname }}</h6>
+
+        <!-- beneficiarydetail -->
+        
+            <form [formGroup]="benForm" (ngSubmit)="OnUpdate()" >
+
+                 <!-- Group1 -->
+              <div class="row form-group">
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Given Name</b> </label>
+                        <input type="text" class="form-control" formControlName="gname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                      </div>
+                    
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Last Name</b> </label>
+                        <input type="text" class="form-control" formControlName="lname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                    </div>
+                    
+                
+                
+                  <div class="col-sm-3 ">
+                      <label><b>Relation</b></label>
+                      <input type="text" formControlName="relation" required class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  <div class="col-sm-3">
+                      <label> <b> Address</b></label>
+                      <input type="text" formControlName="address"  class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  
+              </div>
+    
+                <div align="right" style="padding-bottom: 10px ">
+                    <button type="submit" [disabled]="!benForm.valid" style="background-color: #6fad20" class="btn btn-success ">Update</button>
+                </div>
+            </form>
+       
+    </div>
+    <br>
+    <!-- Beneficiary Add -->
+    <div *ngIf="add==true" style="padding-top: 20px" >
+        
+        <!-- beneficiarydetail -->
+        
+            <form [formGroup]="benForm" (ngSubmit)="onSubmit()">
+                
+                 <!-- Group1 -->
+              <div class="row form-group">
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Given Name</b> </label>
+                        <input type="text" class="form-control" formControlName="gname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                      </div>
+                    
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Last Name</b> </label>
+                        <input type="text" class="form-control" formControlName="lname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                    </div>
+                    
+                
+                
+                  <div class="col-sm-3 ">
+                      <label><b>Relation</b></label>
+                      <input type="text" formControlName="relation" required class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  <div class="col-sm-3">
+                      <label> <b> Address</b></label>
+                      <input type="text" formControlName="address"  class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  
+              </div>
+    
+                <div align="right" style="padding-bottom: 10px ">
+                    <button type="submit" [disabled]="!benForm.valid" style="background-color: #6fad20" class="btn btn-success ">Save</button>
+                </div>
+            </form>
+        
+        <br>
+    </div>
+
+
+    
+</div>
+</div>
+
+<!-- footer -->
+<app-footer style="bottom:0; width:100%; padding-top: 10px" ></app-footer>

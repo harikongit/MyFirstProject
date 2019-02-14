@@ -1,0 +1,318 @@
+<!-- header -->
+<app-header *ngIf="loading == false"></app-header>
+
+<!-- steps -->
+<nav *ngIf="loading == false">
+    <div class="text-center" style="padding: 10px; font-family: serif">
+        <span class="badge badge-pill badge-success">1</span>   ------------  
+        <span class="badge badge-pill badge-success">2</span>   ------------  
+        <span class="badge badge-pill badge-success">3</span>
+    </div>
+    <div class="text-center" style=" margin-top: -15px; padding-bottom: 10px">
+        <span class="text-center" style="font-size: 9pt; font-weight: bold; padding-left: 20px; padding-right: 20px">Select</span>   
+        <span class="text-center" style="font-size: 9pt; font-weight: bold; padding-left: 20px; padding-right: 20px" >Customize</span>  
+        <span class="text-center" style="font-size: 9pt; font-weight: bold; padding-left: 20px; padding-right: 20px">Confirm</span>
+      </div>
+</nav>
+
+
+<!-- content -->
+<div class="container-fluid back" *ngIf="loading == false" [hidden]="main == false">
+
+        <div class="pages_title">
+                <h3>Review Product Subscription</h3>
+        </div>
+
+     
+        <div class="product_tiles_des">
+                <div class="row" *ngIf="plan"> 
+                    <div class="col-12 col-sm-3 col-lg-2 pt-1">
+                        <div class="prd_thums">
+                                <img  id="space" src="{{ plan.merchantLogo }}" width="130" height="80">
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-9 col-lg-10 pt-1" >
+                        <div class="prds_inerdes">
+                            <strong> Merchant Name  <span style="float:right"> : </span>  </strong> {{ plan.merchantName }} 
+                    </div>
+                            <div class="prds_inerdes">
+                                    <strong> Product Type  <span style="float:right"> : </span>  </strong>   {{ plan.productType }} 
+                            </div>
+                            <div class="prds_inerdes" >
+                                <strong>Product Selected  <span style="float:right"> : </span> </strong>    {{ plan.productName }}
+                            </div>
+        
+                         </div>
+                    
+                </div>
+        
+            </div>
+
+ 
+    
+    <div class="rev_form" *ngIf="plan">
+        <div class="row" style="padding-top: 0;">
+            <div class="col-12 col-sm-8 col-lg-9">
+              
+                <!-- first row -->
+                <div class ="row product_tiles_des pt-0">
+                    <!-- first column -->
+                    <div class="col-12  col-sm-7 col-lg-8 ">
+                        <div class="row" style="padding-top: 30px" style="display: none;">
+                            <div class="col-sm-12 col-lg-6" > <label style="font-size:11pt"><b>Subscription Name<span class="gname" >:</span></b></label> {{ plan.name }}  </div>
+                            <!-- <div class="col-sm-12 col-lg-6" style="visibility: hidden"><label style="font-size:11pt"><b> Promotional value for each voucher: </b> $ {{ plan.promoDis | number }} </label></div> -->
+                        </div>
+                        <div class="row pt-3" style="padding-bottom:1px">
+                            <div class="col-sm-9 col-lg-6"><label style="font-size:11pt"><b>Payment Term  :</b></label> {{ plan.freq }} </div>
+                            <div class="col-sm-12 col-lg-6"><label style="font-size:11pt"><b> Promotional value for each voucher: </b> <span style="color: red; font-weight: bold">${{ plan.redemAmt | number }}</span> </label></div>
+                            
+                        </div>
+                        <div class="row pt-3" style="padding-bottom:1px">
+                                <div class="col-sm-12 col-lg-6"><label style="font-size:11pt"><b>Payment per Term :</b> ${{ plan.monthlyPay | number}} </label></div>
+                                <div class="col-sm-12 col-lg-6"><label style="font-size:11pt"><b>Savings :</b> {{ plan.savings }}% </label></div>
+                            </div>
+                       
+                    </div>
+    
+                    <!-- second column -->
+                   <div class="col-12 col-sm-4 col-lg-4 pt-1" >
+
+
+                        
+                        <div class="row pt-2">
+
+                            <div class="privacy_block">
+                                     <a class="edit" role="button" href="#" role="button" href="#" data-toggle="modal" data-target="#exampleModalLong4" >
+                                                <img src="assets/imgs/increase.png">
+                                                <span>Benefits and Cancellation Policy</span>
+                                            </a>   
+                              </div>
+                               <div class="privacy_block">
+                                     <a class="edit" role="button" href="#" role="button" href="#" data-toggle="modal" data-target="#exampleModalLong3">
+                                                <img src="assets/imgs/agreement.png">
+                                                <span>Terms and Conditions</span>
+                                            </a>   
+                              </div>
+
+
+                            </div>
+                       
+                        <!-- <div class="row pt-0"><div class="col-sm-12" ><label>My Savings:</label> {{ plan.savings }}%</div></div> -->
+                    </div>
+                </div>
+                <!-- end of first row -->
+          
+              
+    
+                <!-- Paymnt Method -->
+                <div class="row product_tiles_des pt-0">
+                    <div class="col">
+                    <div class="row ">
+                        <div class="col-sm-12 col-lg-6" style="color:solid black; font-weight:bold">Payment Method for this Product </div>
+                    </div>
+                    <div class="row pb-0">
+                       <div class="col-sm-12 col-lg-7" *ngIf="cardsta == true" style="font-size:11pt"><label ><b>Payment Method: </b></label> {{ this.cardBrand }} xxxx-{{ this.cardlast4 }} <a (click)="OnCard()"class="edit" [routerLink]="['cardlis']" style="color: #007bff;" ><b>(Change)</b></a></div>
+                       <div class="col-sm-12 col-lg-7" *ngIf="cardsta == false" style="font-size:11pt"><b>Payment Method: </b><a (click)="OnCard()"class="edit" [routerLink]="['cardlis']" style="color: #007bff;" >Choose Payment Method</a></div>
+                    </div>
+                    <div class="row pt-0">
+                        <div class="col" style="font-size: 8pt">Note: The same payment option is used for all future payments for this subscription. Go to My Payments in future to change this. </div>
+                    </div>
+                </div>
+                </div>
+    
+                <!-- Beneficiray Details -->
+              
+                <!-- <div class="row form-group pt-0">
+                    <div class="col">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6" style="color:solid black; font-weight:bold">Beneficiary Details </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6" *ngIf="bensta == true" style="font-size:11pt"><b>Beneficiary:</b>  {{ ben.gname }} <a class="edit" (click)="OnBen()" [routerLink]="['benef']" style="color: #007bff;" ><b>(Change)</b></a></div>
+                        <div class="col-sm-12 col-lg-6" *ngIf="bensta == false" style="font-size:11pt"><b>Beneficiary: </b><a class="edit" (click)="OnBen()" [routerLink]="['benef']" style="color: #007bff;" >Choose Beneficiary</a></div>
+                    </div>
+                    </div>
+                </div>   
+            
+                <div class="row form-group pt-0">
+                        <div class="col">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6" style="color:solid black; font-weight:bold">Payment Details </div>
+                    </div>
+                    <div class="row pb-0">
+                        <div class="col-sm-12 col-lg-6" style="font-size:11pt"><b>Frequency : </b><span style="text-transform: capitalize">{{ freq }}</span> </div>
+                    </div>
+                    <div class="row pt-0">
+                        <div class="col-sm-12 col-lg-6" style="font-size:11pt"><b>Payment Schedule : </b><a role="button" href="#" data-toggle="modal" data-target="#exampleModalLong2"  >Details</a></div>
+                    </div>
+                </div>
+                </div> -->
+                <!-- end of Beneficiary  -->
+            </div>
+    
+            <!-- above col-9 end  -->
+            <div class="col-12 col-sm-4  col-lg-3  " style="padding-bottom: 10px; ">
+                <div class="allpay">
+                     <div class="pay_tle"> Payment Summary {{ fre }} </div>
+                     <div class="row">
+                         <div class="col-md-12">
+                             <label>Payment Amount</label>
+                             <h4>${{ plan.monthlyPay }}</h4>
+                         </div>
+                     </div>
+                     
+                    <!-- <div class="row pt-0">
+                        <div class="col-sm-12"><label>Taxes<span style="padding-left: 93px">: ${{ tax }} </span> </label></div>
+                        <label style="font-size: 10pt; padding-left: 15px">Taxes to be paid at store while redemption</label>
+                    </div> -->
+                    <!-- <div class="row pt-0">
+                        <div class="col-sm-12"><label>Fees<span style="padding-left: 98px">: ${{ fee }} </span></label></div>
+                    </div> -->
+                     <div class="row pt-0">
+                        <div class="col-sm-12">
+                            <div class="prmo_bl">
+                                <span>Promocode :</span> 
+                                <input class="form-control" type="text" >
+                                 <a  >Apply</a>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                    <!-- <div class="row pt-0">
+                        <div class="col-sm-12" style="color:solid black; font-weight:bold">Total Payment Amount: ${{ plan.monthlyPay }} </div>
+                    </div> -->
+                    <!-- <label style="font-size: 10pt; padding-left: 15px">Taxes to be paid at store while redemption</label>-->
+                     <div class="row">
+                         <div class="col-md-12">
+                    <label>Total Payment Amount</label> <h4>${{ plan.monthlyPay }} </h4>
+                    <small>Taxes to be paid at store while redemption</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-top: 10px">
+                    <!-- <div class="row pt-0" style="padding-top: 10px">
+                        <div class="col-sm-12"><label>Promocode<span class="promo" >: <input class="col-3 col-sm-5 col-lg-4" type="text" placeholder="CPA25"> <a class="edit" style="color: #007bff" >Apply</a></span></label></div>
+                    </div> -->
+                     
+                  
+                </div>
+            </div>
+            <!-- end of col-3 -->
+        </div>
+        <!-- end of top row -->
+    
+        <div class="button">
+            <button type="cancel" class="btn btn-default" (click)="OnBack()" style="background-color: black; color: white" >Back</button>
+            <button type="submit" class="btn btn-success" [disabled]="cardsta == false " style="background-color: #6fad20; color: white" (click)="OnCnfrm()" >Confirm my Subscription</button>
+        </div>
+
+    <!-- end of form -->
+    </div>
+
+    <!-- future payment -->
+    <div *ngIf="plan" class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Payment Schedule</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+        <!-- Table definition -->
+        <div class = "container row1" >
+        <table class="table table-sm table-responsive " >
+            <thead>
+                <tr table-info>
+                    <th>Transaction Due Date</th>
+                    <th>Subscrption ID </th>
+                    <th>Merchant ID</th>
+                    <th>Pay Source</th>
+                    <th>Scheduled Amount </th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pay of fpay">
+                    <td>{{ pay.InstDate }}</td>
+                    <td>{{ pay.ActNo }}</td>
+                    <td>{{ pay.merchantId }}</td>
+                    <td>xxxx-{{ pay.cardlast4 }}</td>
+                    <td>${{ pay.InstAmount }}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+            <!--  end of table -->
+        </div>
+      </div>
+    </div>
+</div> 
+
+<!-- Terms And Conditions -->
+<div *ngIf="plan" class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Terms And Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container row1" >
+                <h4 class = "row1">{{ tnc }}</h4>
+            </div>
+            <!-- <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Benefits And Cancellation -->
+<div *ngIf="plan" class="modal fade" id="exampleModalLong4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Benefits And Cancellation Policy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container row1" >
+                <h4 class = "row1">{{ bnc }}</h4>
+            </div>
+            <!-- <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+</div>
+
+</div>
+
+
+
+<app-loadingspin *ngIf="loading == true"></app-loadingspin>
+
+
+<!-- Beneficiary and CardList links -->
+<app-benef-review [name]=ben.gname *ngIf="bene == true"></app-benef-review>
+<app-card-review [Id]=cardId *ngIf="card == true"></app-card-review>
+
+<!-- router -->
+<!-- <router-outlet *ngIf="bene == true || card == true"></router-outlet> -->
+
+<!-- footer -->
+<div class="foot" [hidden]="loading == true || main == false" ><app-footer></app-footer></div>
+

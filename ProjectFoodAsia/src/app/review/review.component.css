@@ -1,0 +1,278 @@
+
+
+
+h3 {
+    text-align: center;
+    font-weight: bold;
+}
+.product_tiles_des {
+    background: #fff;
+    border: 1px solid rgba(111, 173, 32, 0.55);
+    margin-bottom: 15px;
+}
+.modal-body h4 {
+    line-height: 21px;
+    color: #5d5d5d;
+    text-align: justify;
+    font-size: 14px;
+    letter-spacing: normal;
+    font-weight: 600;
+}
+.rev_form {
+    padding-left: 10px;
+}
+.pages_title{ text-align: center; font-family: 'Poppins', sans-serif; overflow: hidden;}
+.pages_title h3 {
+    margin: 16px 0;
+    color:#569a00;
+    display: block;
+    font-size: 19px;
+    text-transform: uppercase;
+}
+.prd_thums img {
+    margin: 0 !important;
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+}
+.prds_inerdes {
+    font-size: 17px;
+    margin-top: 1%;
+}
+.prds_inerdes strong {
+    width: 18%;
+    display: inline-block;
+}
+
+.box_prd .high{
+    background-color: #6fad20;
+    color: white;
+}
+.privacy_block a.edit {
+   color: #c37e00;
+}
+.privacy_block img {
+    height: 35px;
+    border: 1px solid #ccc;
+    width: 35px;
+    border-radius: 50%;
+    padding: 5px;
+}
+.privacy_block {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+
+.allpay {
+    background: #fff;
+}
+
+.pay_tle {
+    background: #6fad20;
+    text-align: center;
+    color: #fff;
+    padding: 6px 0;
+}
+
+.allpay .col-md-12 {
+    text-align: center;
+}
+
+.allpay h4 {
+    font-weight: bold;
+    font-size: 27px;
+    color: #f00;
+}
+
+.prmo_bl input.form-control {
+    display: inline-block;
+    width: 40%;
+    border-radius: 0;
+    padding: 6px;
+    height: 30px;
+}
+
+.prmo_bl a {
+    background: #ccc;
+    height: 40px;
+    overflow: hidden;
+    padding: 6px 8px;
+    color: #000;
+    margin-left: -4px;
+}
+
+.prmo_bl {
+        padding: 0 7px;
+    border-bottom: 1px solid #e4e4e4;
+    padding-bottom: 13px;
+}
+
+.form {
+    padding:5px;
+}
+
+.form-group {
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right:5px;
+    padding-bottom: 10px;
+
+    /* border: 1px solid gray; */
+    background-color: white;
+}
+
+.row {
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 5px;
+   padding-right: 5px;
+}
+
+.nam {
+    margin-left: 59px;
+}
+.date {
+    margin-left: 31px;
+}
+
+.numb {
+    margin-left: 64px;
+}
+
+/* .foot {
+    margin-bottom: 40px;
+} */
+
+.num {
+    margin-left: 10px;
+}
+
+.back {
+    background-color: rgb(232, 232, 233);
+    padding-top: 20px;
+    
+}
+
+.card {
+    height: 30px;
+    width: 50px;
+}
+
+.button {
+    /* color: white; */
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+
+.edit{
+    cursor: pointer;
+}
+
+.row1{
+    font-size: 10pt;
+  }
+
+  @media(min-width: 1000px) and (max-width: 1500px){
+
+    /* .gname{
+        padding-left: 6px;
+    }
+
+    .strt{
+        padding-left: 14px;
+    }
+    .payment{
+        padding-left: 20px;
+    }
+    .term{
+        padding-left: 50px;
+    }
+    .promo{
+        padding-left: 50px;
+    } */
+  }
+
+  @media (min-width: 1200px)  {
+
+    #group{
+        padding-left: 15px;
+    }
+   
+    #space{
+       margin-top: -85px;
+   }
+     }
+     
+     @media (min-width: 1000px) and (max-width: 1200px) {
+     
+       #ipadp{
+          padding-left: 30px;
+       }
+       #group{
+           padding-left: 25px;
+           
+       }
+       #space{
+           margin-top: -85px;
+       }
+     }
+     
+    @media( min-width: 700px) and (max-width: 1000px){
+       #space{
+           margin-top: -85px;
+       }
+    }
+
+
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+
+    .prds_inerdes strong{
+    width: 30%;
+    display: inline-block;
+}
+.box_prd label {
+    padding-bottom: 11px;
+}
+.privacy_block img {
+    display: none;
+}
+
+.pay_tle{ 
+    font-size: 14px;
+}
+.allpay{    font-size: 20px;}
+.prmo_bl span {
+    display: block;
+}
+
+}
+
+@media only screen and (max-width: 767px) {
+
+     .product_tiles_des {
+    padding: 10px;
+}
+.product_tiles_des .row {
+    padding: 0;
+}
+.prds_inerdes strong {
+    width: 50% ;
+}
+.prds_inerdes {
+    font-size: 14px;
+}
+
+.box_prd .row {
+    margin-bottom: 9px;
+}
+
+.allpay {
+    margin-top: 5%;
+}
+
+
+}

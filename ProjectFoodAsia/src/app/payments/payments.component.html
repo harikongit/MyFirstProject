@@ -1,0 +1,438 @@
+
+
+<!-- My Payments -->
+<div class="container-fluid" id="main" >
+
+    <!-- message -->
+<p *ngIf="noplansflag == true" style="font-size: 12pt; text-align: center; font-family: 'Roboto','Open Sans Condensed', 'karla',sans-serif;" >You have not subscribed to any products yet. Go to <a [routerLink]="['/scheme/addproducts']">All Deals</a> to subcribe a product. </p>
+    
+    <div class="page_title text-center">
+      <h2>My Payments</h2>
+    </div>
+
+    <div class="container subc_tabs" *ngIf="noplansflag == false " id="filter">
+
+      
+
+        <div class="row" alink="color: #066b24;">
+            <div [class.high1]="clickA" style="cursor:pointer" class="col-4 col-sm-2  col-lg-2 offset-sm-3 sub_tabs offset-lg-3" ><a [class.high]="clickA" (click)="OnFilter('All')">All</a></div>
+            <!-- <div [class.high1]="clickW" style="cursor:pointer" class="col-sm-3  col-lg-2" ><a  (click)="OnFilter('Upcoming')">Upcoming</a></div> -->
+            <div [class.high1]="clickO" style="cursor:pointer" class="col-4 col-sm-2  col-lg-2 sub_tabs" ><a  (click)="OnFilter('In Progress')">In Progress</a></div>
+            <!-- <div [class.high1]="clickG" style="cursor:pointer" class="col-sm-3  col-lg-2" ><a  (click)="OnFilter('Completed')">Completed</a></div> -->
+            <div [class.high1]="clickC" style="cursor:pointer" class="col-4 col-sm-2  col-lg-2 sub_tabs" ><a  (click)="OnFilter('Cancelled')">Cancelled</a></div>
+        </div>
+    </div>
+<!-- message if no upcoming or any other plans-->
+<p *ngIf="plansflag == true" style="font-size: 12pt; text-align: center; " >You don’t have any {{ text }} subscriptions.</p>
+   
+<div class="container "  *ngFor="let plan of splans; let i =index"> 
+        
+         <div class="subcr_outer">
+                <div class="subcr_inner">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                                 <div class="sub_head">
+                           <div class="row">
+                             <div class=" col-12 col-sm-6 text-left" >
+                                <span class="sub_mernames" style=" font-size: 14pt; font-weight: normal; text-transform: capitalize"> <b> <img src="assets/imgs/fa-logo.png">  {{ plan.merchantName }} </b>-    {{ plan.productName }}</span>
+                               <!-- <span style="font-weight: bold;  font-size: 11pt"> {{ plan.merchantName }}    </span>   -->
+                               </div>
+
+                        
+
+                                <div class="col-12 col-sm-6 " style=" font-size: 11pt; " id="right">
+                                    <b>Payment Frequency:</b> <span style="color:#6fad20; text-transform: capitalize"> {{plan.freq }}</span>
+                                </div>
+                           </div>
+                       </div>
+
+
+                     </div>
+                  </div>
+
+                   <div class="row pad1">
+                        <div class=" col-12 col-md-3 text-center" >
+                        <!-- <div class="col-14"> {{ plan.merchantName}}   </div> -->
+                        <img src="{{ plan.imageURL }}" height="100" width="150" >
+                        <div><a (click)="OnTerm(plan.termsAndconditions)" href="#" style="font-size: 7pt" role="button" data-toggle="modal" data-target="#exampleModalLong6">Product Details with T's and C's</a></div>
+                    </div>
+
+
+
+                     <div class="col-12 col-md-3 subcribe_info">
+
+
+                      <label> <i class="fa fa-tags" aria-hidden="true"></i><b>Subscription ID:</b> {{ plan.ActNo }} </label>
+                      <label><i class="fa fa-calendar" aria-hidden="true"></i><b>Start Date : </b> {{ plan.strtdate }}  </label>
+
+                       
+                          
+                    
+ 
+                       <!-- <p class=" text-left " style="font-size: 11pt"><a (click)="OnFuturPay(plan)" role="button" href="#" data-toggle="modal" data-target="#exampleModalLong2" >Future Payment Schedule</a></p> -->
+                       <!-- <p class=" text-left" style="font-size: 11pt"> <a (click)="ToCancel(pay)" role="button"  data-toggle="modal" href="#" data-target="#exampleModalLong3" > Cancel My Subscription</a></p> -->
+
+
+                       
+                        <!-- <p class=" text-left " style="font-size: 11pt; padding-top: 35px;" >End Date : {{ plan.enddate }} </p> -->
+                       
+                     
+                         <div class=" text-left"> <a  class="edit" style=" font-size: 10pt; color: #007bff" (click)="OnFuturPay(plan)" role="button" href="#" data-toggle="modal" data-target="#exampleModalLong" >Payment History</a></div>
+
+                    </div>
+
+                    <div class="col-12 col-md-3 subcribe_info" >
+                      <label><i class="fa fa-credit-card" aria-hidden="true"></i>  <b>Payment:</b> (xxxx-{{ plan.cardlast4 }}) <a role="button" href="#"  data-toggle="modal" data-target="#exampleModalLong4" (click)="PayMethod(plan)" style=" font-size: 8pt">Change</a> </label>
+                      <div style="height: 45px;"> <label *ngIf=" plan.SubStatus == 'In Progress'" > <i class="fa fa-times" aria-hidden="true"></i> <a (click)="ToCancel(plan)" role="button"  data-toggle="modal" href="#" data-target="#exampleModalLong3" > Cancel Subscription</a></label>
+                       </div>
+                       
+
+                           
+                     </div>
+
+
+
+                        
+
+                        <div class="col-12 col-md-3 subcribe_info">
+
+
+                            <label *ngIf="plan.SubStatus == 'In Progress'" ><i class="fa fa-hourglass-half" aria-hidden="true"></i> <b>Subscription Status : </b><span style="color: #6fad20"> {{ plan.SubStatus }}</span>   </label>
+                            <label *ngIf="plan.SubStatus == 'Cancelled'"><i class="fa fa-hourglass-half" aria-hidden="true"></i> <b>Subscription Status : </b> <span style="color:red"> {{ plan.SubStatus }}</span>   </label>
+                            
+                         <label><i class="fa fa-trophy" aria-hidden="true"></i> <b>Goal Savings:</b> {{ plan.savings }}%</label>
+
+                            <!-- <div *ngIf="plan.goalStatus == 'null'">
+      
+                                <label *ngIf="plan.SubStatus == 'In Progress'" ><i class="fa fa-hourglass-half" aria-hidden="true"></i> <b>Subscription Status : </b><span style="color: #6fad20"> {{ plan.SubStatus }}</span>   </label>
+                                <label *ngIf="plan.SubStatus == 'Cancelled'"><i class="fa fa-hourglass-half" aria-hidden="true"></i> <b>Subscription Status : </b> <span style="color:red"> {{ plan.SubStatus }}</span>   </label>
+                        
+                                <label><i class="fa fa-credit-card" aria-hidden="true"></i>  
+                            <span id="save2"><b>Savings:</b> {{ plan.savings }}%</span></label>
+        
+                         
+                    </div> -->
+      
+      
+                    <!-- <div *ngIf="plan.goalStatus == 'Refunded' || plan.goalStatus == 'Redeemed' || plan.goalStatus == 'Ready to Redeem'"> -->
+                    
+
+
+                    <!-- <div class="sub_proces">
+                   <div class="sub_text">Subscription Status: {{ plan.SubStatus }} </div>  
+                    <div class="sub_text" style="color: #000;"> {{ plan.goalStatus }} </div>
+                     <div class="sub_text" style="    color: #f00;">Goal Savings: {{ plan.savings }}%</div>
+                </div> -->
+
+                       
+                      
+                       
+          <!-- </div> -->
+                        </div>
+
+
+                   </div> 
+                </div>
+          </div>              
+        <!--header  -->
+         
+    
+        <!-- Terms And Conditions -->
+<div  class="modal fade" id="exampleModalLong6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Terms And Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container " >
+                <h4 class = " row1">{{ tnc }}</h4>
+            </div>
+            <!-- <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+</div>
+    </div> 
+</div>
+
+<!-- Payment History-->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content" >
+            <div class="modal-header modheader text-center" style="background-color: #6fad20">
+               <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Payment History</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+                <!-- <span style=" font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Subscription Name:</label> {{ name }}</span> -->  
+                <span style="font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Merchant Name:</label>  {{ merchnt }}</span> <span style="padding-left: 12px; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; font-size: 11pt"><label style="font-weight: bold">Product Name:</label> {{ product }} </span>
+                <!-- Table definition -->
+                <div class = "container row1 text-center" style="margin-top: 15px" >
+                  <table class="table pop_tables table-responsive " width="100%">
+                    <thead>
+                        <tr table-info >
+                    
+                            <th>Transaction Date</th>
+                            <th>Subscription ID </th>
+                            <th>Pay Source</th>
+                            <th>Transaction Amount </th>
+                            <th>Transaction ID</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hpay of payhist">
+                   
+                            <td>{{ hpay.InstDate}}</td>
+                            <td>{{ hpay.ActNo }}</td>
+                            <td> xxxx-{{ hpay.cardlast4 }}</td>
+                            <td>${{ hpay.InstAmount | number }}</td>
+                            <td>{{ hpay.inTxnId }}</td>
+                            <td style="text-transform: capitalize">{{ hpay.payStatus }}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+    
+
+<!-- future payment -->
+<div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Future Payment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <span style=" font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Subscription Name:</label> {{ name }}</span> <br>
+            <span style="font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Merchant Name:</label>  {{ merchnt }}</span> <span style="padding-left: 12px; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; font-size: 11pt"><label style="font-weight: bold">Product Name:</label> {{ product }} </span>
+        <!-- Table definition -->
+        <div class = "container row1 text-center" style="margin-top: 15px">
+        <table class="table table-sm table-responsive " >
+            <thead>
+                <tr table-info>
+                    <th>Transaction Due Date</th>
+                    <th>Subscription ID</th>
+                    <th>Pay Source</th>
+                    <th>Scheduled Amount </th>
+                    <th>Status</th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fpa of fpay">
+                    <td>{{ fpa.InstDate }}</td>
+                    <td>{{ fpa.ActNo }}</td>
+                    <td>xxxx-{{ fpa.cardlast4 }}</td>
+                    <td>${{ fpa.InstAmount | number }}</td>
+                    <td style="text-transform: capitalize">{{ fpa.payStatus }}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+            <!--  end of table -->
+        </div>
+      </div>
+    </div>
+</div> 
+
+<!-- cancel my subscription -->
+<div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header modheader" style="background-color: #6fad20; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; ">
+          <h5 class="modal-title " style="color: white " id="exampleModalLongTitle">Cancel My Subscription</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- <span style=" font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Subscription Name:</label> {{ name }}</span> <br> -->
+                <span style="font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Merchant Name:</label>  {{ merchnt }}</span> <span style="padding-left: 12px; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; font-size: 11pt"><label style="font-weight: bold">Product Name:</label> {{ product }} </span>
+            <br>
+            
+                <!-- <span style="font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;"><label style="font-weight: bold">Paid Installments:</label> {{ paidmon }} {{ freq }}</span> <span style="padding-left: 18px; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; font-size: 11pt"><label style="font-weight: bold">Remaining Installments:</label> {{ unpaidmon }} {{ freq }}  </span> -->
+        </div>
+        <div class="container" style="font-size: 11pt; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;" >
+            <div>
+                <label>Reason for Cancellation: </label>
+                <select style=" margin-left: 20px" #rcancel >
+                    <option> Not Satisfied with Merchant </option>
+                    <option> Not enough Savings with Plan </option>
+                    <option> Too Complicated to Use </option>
+                    <option> Do not need subscription any Longer </option>
+                    <option> Satisfied and will come back Later </option>
+                    <option> Others </option>
+                </select>
+            </div>
+            <br>
+            <div class="text-center"><input type="checkbox" (click)="OnClick()"> <label> I Agree to Cancellation Policy</label></div>
+
+            <div class="modal-footer text-center">
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">Close</button> -->
+                <button class="btn btn-success" style="background-color: #6fad20"  [disabled]= "check == false || planStatus == 'Cancelled' || goalStatus == 'Redeemed' || goalStatus == 'Refunded'"   data-dismiss="modal" type="submit" (click)="OnCancel(rcancel.value)">Proceed</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- payment Method -->
+<div class="modal fade" id="exampleModalLong4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modheader" style="background-color: #6fad20 ">
+                <h5 class="modal-title " style="color: white " id="exampleModalLongTitle">Edit Payment Method</h5>
+                <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-messages></app-messages>
+                <!-- <label style="font-weight: bold">Your Payment Method</label> <br><br> -->
+                <div class="container" *ngIf="cards" style="padding-left: 30px; padding-right: 30px;">
+        
+                    <div class="row" style="padding:10px; ">
+                      <div class="col-md-6 offset-md-3"><h3 align="center"><b>My Saved Cards</b></h3></div>
+                      
+                    </div>
+                
+                 
+                    <div class="paym_row" *ngFor="let card of cards; let i=index">
+                      <div class="row" >
+                            <div class="col-1 col-sm-1 " style="padding-left: 9px;">
+                                    <input type="radio"  name="cardId" [(ngModel)]="cardId" value="{{ card.id }}" (click)="OnSelectC(card)">
+                                </div>
+                         
+                          <div class="col-7 col-sm-7">
+                              <b> <i class="fa fa-credit-card"></i> {{ card.card.brand }} (xxxx-{{ card.card.last4 }})</b>
+                          </div>
+                          <div class="col-4 col-sm-4">
+                              <a style="cursor: pointer" (click)="OnRemove(card)" > <i class="fa fa-trash"></i> Remove</a>
+                          </div>
+                        </div>
+                    </div>
+                  <label style="font-size: 8pt; padding-left: 15%">*** Please select one option and click Done</label>
+                </div>
+                <br> 
+                
+                
+                
+                <div class="container">
+                    <!-- buttons -->     <!-- <button  class="btn btn-success" [disabled]="!selectedcard" style="text-align: right; background-color: #6fad20 " (click)="OnClose()">Done</button> -->
+                       <div class="adcard_row">
+                           <div class="row">
+                            <div class="col-md-6 col-6">
+                                 <button  class="btn btn-primary" (click)="OnAdd()">Add New Card</button>
+                            </div>
+                            <div class="col-md-6 col-6 text-right">
+                                 <!-- <button  class="btn btn-default"  style="text-align: right; background-color: black; color: white" (click)="OnBack()">Back</button> -->
+                                 <button  class="btn btn-success" [disabled]="!selectedcard" style="text-align: right; background-color: #6fad20 " (click)="Done()">Done</button>
+                            </div>
+                
+                       
+                            <div  [hidden]="add == false" style="padding-top: 30px;" class="col-md-12" >
+                                
+                    <!-- <h6 >Add a New Card</h6><br> -->
+                        <form #paymentForm="ngForm" (ngSubmit)="formHandler()" class="checkout"  >
+                            <div class="crdcard">
+                                <h3>Pay with Credit or Debit Card</h3>
+                                <div class="embed-responsive" id="card-element" #cardElement></div>
+                                <div id="card-errors" class="help is-danger" role="alert" *ngIf="formError">{{ formError }}</div>
+                
+                                 <div *ngIf="totalAmount; then pay else save;">
+                                <!-- ng-template appears here -->
+                            </div>
+                
+                            </div>
+                             
+                          
+                           
+                        </form>
+                          
+                     
+                
+                
+                            </div>
+                        </div>
+                       </div> 
+                        
+                    
+                  
+                
+                          
+                          
+                    <!-- Template when Charging Card -->
+                          
+                    <ng-template #pay>
+                            
+                        <button type="submit"  class="button is-info" [disabled]="!formComplete || loading" [class.is-loading]="loading">
+                          
+                                <!-- Pay {{ totalAmount | stripe | currency }} -->
+                          
+                        </button>
+                          
+                    </ng-template>
+                          
+                          
+                    <!-- Template when Saving Card for Later Use -->
+                          
+                    <ng-template #save >
+                        <div style="text-align: right">
+                        <button type="submit" class="btn btn-primary" [disabled]="!formComplete || loading" [class.is-loading]="loading">
+                          
+                                Save Card
+                                <span [hidden]="!loading">
+                                    <i class="fa fa-spinner fa-spin fa-1x fa-fw"></i>
+                                </span>
+                        </button>
+                        </div> 
+                
+                        <!-- Sucess/Error messages -->
+                        <div *ngIf="result" class="p-3 mt-2 bg-success text-white">
+                            <!-- Attached payment source {{ result.id }} -- {{ result.card.brand }} ending in {{ result.card.last4 }} -->
+                             {{ this.result }}
+                          </div>  
+                        
+                        <!-- If error, show the user the raw error msg from Stripe -->
+                        <div *ngIf="errMsg" class="p-3 mt-2 bg-danger text-white">
+                            {{ errMsg }}
+                        </div>
+                   
+                    </ng-template>
+                
+                <br>
+                <!-- <div><a href="" >Add Bank Account</a></div>
+                <div><a href="" >Add Card</a></div> -->
+            </div>
+            <!-- <div class="modal-footer">
+               <button type="button" style="color: white; background-color: #6fad20" class="btn btn-secondary"  data-dismiss="modal">Save</button>    
+            </div> -->
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- footer -->
+<app-footer  class="footer" style="bottom:0; width:100%;  "></app-footer>
+
+
+

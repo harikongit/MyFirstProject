@@ -1,0 +1,109 @@
+.container-fluid{
+    font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;
+    }
+    
+    
+    
+    .w-100 {
+    height: 200px;
+    width:100%
+    
+    }
+    .image {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    background-color: black;
+    }
+    .cotact_page {
+    margin-top: 4%;
+}
+.cotact_page h2 {
+    color: #6fad20;
+    font-size: 28px;
+    font-weight: 600;
+}
+.c_form label {
+    width: 90%;
+}
+.c_form .form-control {
+    background: #ececec;
+    border-radius: 0;
+    color: #000;
+}
+    /* span {
+    position: absolute;
+    top: 130px;
+    left: 0;
+    width: 100%;
+    color:white;
+    padding-left: 200px;
+    
+    } */
+    
+    /* .mask{
+    background-color: black;
+    opacity: 0.4;
+    } */
+    
+    .container-fluid .content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    height:100%;
+    padding-left: 250px;
+    }
+    .container-fluid .content1 {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    height:100%;
+    
+    }
+    
+    
+    
+    .button {
+    background-color:#6fad20;
+    border: none;
+    color: white;
+    padding: 5px 50px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    }
+    @media screen and (min-width: 600px) {
+    .mobile{
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+    }
+    }
+    @media screen and (max-width: 600px) {
+    .web{
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+    }
+    }
+
+
+
+@media only screen and (max-width: 767px) {
+
+.content1.mobile {
+    padding-left: 20px;
+}
+
+}    

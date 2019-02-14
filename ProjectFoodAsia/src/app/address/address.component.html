@@ -1,0 +1,120 @@
+<div class="form_secf">
+                    <div class="fsc_title">Address</div>
+                    <div class="form_felds">
+                        <div class="row">
+                          <div class="col-md-3" *ngFor="let add of Add" >
+                            <div class="svae_add">
+                              <h2>Your Addresses</h2>
+                              <b>{{ firstnam }} {{ lastnam }},</b>
+                              <b>{{ add.custCity }}, {{ add.custCountry }},</b>
+                              <b>{{ add.custZipCode }}</b>
+
+                             <a (click)="OnEdit(add)" class="ad_edit"><i class="fa fa-edit"></i> Edit</a> 
+                              <a (click)="OnDel(add)" class="ad_trsah"><i class="fa fa-trash"></i> Remove</a>
+                            </div>
+                          </div>
+
+                        </div>
+
+
+                        <div class="row">
+    <div class="col-md-12">
+      <div class="add_adres">
+         <h3 (click)="OnAdd()" >Add New Address</h3>
+         <div class="row">
+           <div class="col-md-6">
+              <input class="form-control"  placeholder="Enter your address" type="text" autocorrect="off" autocapitalize="off" spellcheck="off"  #search>
+               <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+           </div>
+           <div class="col-md-6">
+               
+           </div>
+           </div>
+           <form  [formGroup]="addForm" >
+        <div class="row">
+            <div class="col-md-3 "> 
+            <label>Street address</label>                
+                <input  type="text" class="form-control" formControlName="custStreetAddress" id="street_number" name="street_number" [(ngModel)]="componentForm.street_number" placeholder="Street Address" required>
+                <!-- <input  type="text" class="form-control" id="route" disabled="true"> -->
+            </div>
+
+            <div class="col-md-2 "><label>Zip code</label> 
+                <input  type="text" class="form-control" formControlName="custZipCode" id="postal_code" name="postal_code" [(ngModel)]="componentForm.postal_code" placeholder="Zip code" required>
+            </div>
+
+            <div class="col-md-2 "><label>City</label>
+                <input  type="text" class="form-control" formControlName="custCity" id="locality" name="locality" [(ngModel)]="componentForm.locality" placeholder="City" required>
+            </div>
+
+            <div class="col-md-2 "><label>State </label>
+                <input type="email" class="form-control" formControlName="custState" id="administrative_area_level_1" name="administrative_area_level_1" [(ngModel)]="componentForm.administrative_area_level_1" placeholder="State" required>
+            </div>
+
+            <div class="col-md-2 "><label>Country</label>
+                <input  type="text" class="form-control" formControlName="custCountry" id="country" name="country" [(ngModel)]="componentForm.country" ngModel  placeholder="Country" required>
+            </div>
+
+            <!-- <div class="col-md-3 " style="color:#6fad20">Alternate Number<br>
+                <input  type="text" class="form-control" formControlName="custAltnumber"   placeholder=" Phone Number" required>
+            </div> -->
+        </div>
+
+        
+            <div style=" text-align: right; padding-top: 15px;"  >
+                <button class="btn btn-default" type="reset" (click)="OnReset()" >Reset</button>
+                <button *ngIf="clicka == true" type="submit"  class="btn btn-success" (click)="OnSave()" style=" background-color: #6fad20">Save</button>
+                <button *ngIf="clicke == true" type="submit"  class="btn btn-success" (click)="OnUpdate()" style=" background-color: #6fad20">Update</button>
+            </div>
+     
+      </form>
+
+         
+      </div>
+     
+    </div>
+  </div>
+
+                    </div>
+                </div>
+
+
+
+
+<div style="padding:10px" style="display: none;">
+   
+  <div class="container-fluid" style="padding: 20px">
+  <div class="row" *ngIf="Add">
+      <div class="col-sm-4"><b style="color: #007bff"></b></div>
+  </div>
+  <div class="row" >
+      <div class="col-md-3 " style=" margin: 10px; border: 1px solid gray">
+          <div class="ip1" style="padding: 10px">
+              <div ></div>
+              <!-- <div><b> HNo. {{ add.custHNo }},</b></div> -->
+              <!-- <div><b>{{ add.custlandmark}},</b></div> -->
+              <div></div>
+              <div></div>
+              <!-- <div><b>Alternate Number: {{ add.custAltnumber }}</b></div> -->
+               
+          </div>
+      </div>
+  </div>
+
+  
+</div>
+</div>  
+
+
+ 
+
+
+
+        
+    
+        
+
+            
+                    
+    

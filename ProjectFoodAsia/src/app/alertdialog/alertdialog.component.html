@@ -1,0 +1,25 @@
+
+
+<div *ngIf="flag == ''">
+<mat-dialog-content>{{ title }}</mat-dialog-content>
+<mat-dialog-actions >
+  <!-- <button class="mat-raised-button btn btn-default mr-1"  mat-dialog-close>No</button> -->
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <div class="col-2 " style="padding-top: 20px">
+      <button class="btn btn-success" style="background-color: #6fad20; " mat-button [mat-dialog-close]="true">OK</button>
+  </div>
+</mat-dialog-actions>
+</div>
+
+
+<div *ngIf=" flag == 'con'">
+<mat-dialog-content>{{ title }}</mat-dialog-content>
+<mat-dialog-actions >
+  
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <div style="padding-top: 20px">
+      <button class="btn btn-success" style="background-color: #6fad20; " mat-button [mat-dialog-close]="true">Yes</button>
+      <button class=" btn btn-default " style="background-color: black; color: white " mat-dialog-close>No</button>
+    </div>
+</mat-dialog-actions>
+</div>

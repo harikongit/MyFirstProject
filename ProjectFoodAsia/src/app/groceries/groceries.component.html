@@ -1,0 +1,508 @@
+
+<!-- Groceries -->
+
+<ais-instantsearch [config]="{
+    apiKey: 'adeed2b7445812eb85e512942b7fdfb8',
+    appId: 'AEXP59O68X',
+    indexName: 'groceries',
+    routing: true
+  }">
+
+
+  <!-- <div class="searchbox-container">
+    <ais-range-slider
+    attribute="savings"
+    [min]="0"
+    [max]="40"
+  >
+  </ais-range-slider>
+</div> -->
+  <!-- add search box -->
+  
+  <!-- <div class="container" *ngIf="!srchflag" id="filter" > 
+        <div class="row" style="padding-top: 15px;margin-left: 45px; margin-right:55px; background-color: #cde9ae; ">
+            <div  style="cursor:pointer" class="col-sm-2  col-lg-2" ><label style="font-weight: bold" >Filter by Savings</label></div>
+            <div  [class.high]="click0" style="cursor: pointer" class="col-sm-1  col-lg-1" ><a (click)="OnAlgo()">All</a></div>
+            <div  [class.high]="click1" style="cursor:pointer" class="col-sm-2  col-lg-2" ><a (click)="OnSave('10')">0%-10%</a></div>
+            <div [class.high]="click2" style="cursor:pointer" class="col-sm-2  col-lg-2" ><a (click)="OnSave('11')" >11%-25%</a></div>
+            <div [class.high]="click4" style="cursor:pointer" class="col-sm-2  col-lg-2" ><a (click)="OnSave('25')" >25% or more</a></div>
+            <div  class="col-sm-3  col-lg-3" ><ais-search-box placeholder="Search Deals"></ais-search-box><img class="offset-lg-6" src="../../assets/imgs/algolia.png" ></div>   
+        </div>   
+    </div> 
+
+    <div class="container" *ngIf="srchflag" id="filter" > 
+            <div class="row" style="padding-top: 15px;margin-left: 45px; margin-right:55px; background-color: #cde9ae; ">
+                <div  style="cursor:pointer" class="col-sm-2  col-lg-2" ><label style="font-weight: bold" >Filter by Savings</label></div>
+                <div  [class.high]="click0" style="cursor: pointer" class="col-sm-1  col-lg-1" ><a (click)="OnAlgo()">All</a></div>
+                <div  [class.high]="click1" style="cursor:pointer" class="col-sm-2  col-lg-2" ><a (click)="OnSave('10')">0%-10%</a></div>
+                <div [class.high]="click2" style="cursor:pointer" class="col-sm-2  col-lg-2" ><a (click)="OnSave('11')" >11%-25%</a></div>
+                <div [class.high]="click4" style="cursor:pointer" class="col-sm-2  col-lg-2" ><a (click)="OnSave('25')" >25% or more</a></div>
+                <div  class="col-sm-3  col-lg-3" ><ais-search-box placeholder="Search Deals" (click)="OnAlgo()"></ais-search-box><img class="offset-lg-6" src="../../assets/imgs/algolia.png" ></div>   
+            </div>   
+        </div>  -->
+    
+        <ais-hits *ngIf="!srchflag">
+            <ng-template let-hits="hits">
+
+                <!-- Jewellery web -->
+      
+                <div class="container  taab add"> 
+
+                  <div class="tb_head">
+                    <div class="row">
+                         <div class="col-6 col-sm-3 col-md-2 no_padd text-center"> Deals</div>
+                         <div class="col-6 col-sm-2 col-md-2 no_padd text-center"> Merchant</div>
+                         <div class="col-6 col-sm-2 col-md-3 no_padd text-center"> Product</div>
+                         <div class="col-6 col-sm-2 col-md-1 no_padd text-center"> Savings</div>
+                         <div class="col-6 col-sm-3 col-md-4 no_padd text-center"> Additional Offers</div>
+                        
+
+                    </div>
+                  </div>
+
+                  <div class="tb_body" *ngFor="let hit of hits , let i=index">
+                    <div class="row">
+                         <div class="col-6 col-sm-3 col-md-2 no_padd text-center"> 
+                          <div class="deal_img"> <img  id="space" src="{{ hit.imageURL }}" width="130" height="90"></div> </div>
+                         <div class="col-6 col-sm-2 col-md-2 no_padd text-center"> <div class="mer_name"><img src="assets/imgs/fa-logo.png" style="height: 20px"> <a style="cursor: pointer; color:#007bff" (click)="OnMer(hit.merchantDesc)" data-toggle="modal" data-target="#exampleModalLong"> {{ hit.merchantName }}</a></div>
+                       <div  class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+                                <div class="modal-dialog  modal-lg" role="document">
+                                  <div class="modal-content"   >
+                                    <div class="modal-header modheader text-center" style="background-color: #6fad20; margin-top: -10px" >
+                                      <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Seller</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                   
+                                        <div class = "container row1" >
+                                            <h4 class = " row1">{{ mdesc }}</h4>
+                                        </div>
+                                        <!-- <div class="modal-footer">
+                                            <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                         <div class="col-6 col-sm-2 col-md-3 no_padd text-center"> <div class="prd_name"><a style="cursor: pointer; color:#007bff" (click)="OnPro(hit.productDesc)" data-toggle="modal" data-target="#exampleModalLong1">{{ hit.productName }}</a></div>
+
+                         <div  class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+                                <div class="modal-dialog  modal-lg" role="document">
+                                  <div class="modal-content"   >
+                                    <div class="modal-header modheader text-center" style="background-color: #6fad20;  margin-top: -10px">
+                                      <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Product</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+                                   
+                                        <div class = "container row1" >
+                                            <h4 class = " row1">{{ pdesc }}</h4>
+                                        </div>
+                                        <!-- <div class="modal-footer">
+                                            <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                                        </div> -->
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+
+                       </div>
+                         <div class="col-6 col-sm-2 col-md-1 no_padd text-center"> <h4>{{ hit.savings }}% </h4></div>
+                         <div class="col-6 col-sm-3 col-md-4 no_padd text-center">
+                          <div class="ads_ofs">{{ hit.additionalOffers }} </div>
+
+                          <div class="deal_slt">
+                             <a [hidden]="!user || (userA == true)" [routerLink]="['/scheme/addproducts/', hit.productType, hit.objectID]"class="btn btn-success" (click)="OnDel()" style="background-color: #6fad20" role="button">Select</a>
+                            <a [hidden]="user && (userA == false)" [routerLink]="['/login',i]"class="btn btn-success" style="background-color: #6fad20" role="button">Select</a>
+                          </div>
+                           
+                        
+
+                        </div>
+                        
+
+                    </div>
+                  </div>
+        
+                    <!-- header -->
+                     
+                  <!-- header -->
+                  <div class="container" style="display: none;">                
+                    <div class="row align-items-center border1 clearfix conta" style="margin-left:25px;margin-right:35px; " >
+                        <div class="col-6 col-sm-2 col-md-1" ></div>
+                        <div  class=" col-6 col-sm-4 col-md-2 " >
+                           
+                        </div>
+                        <div class=" col-6 col-sm-4 col-md-2  " >
+                              <p class="text-center  "></p>
+                                  <!-- <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{{ hit.merchantDesc }}" data-content=" Coined by Mr Xerxes Desai by marrying the words 'Tan' meaning body and 'Nishk' meaning a gold ornament, Tanishq is a name synonymous with superior craftsmanship, exclusive designs and superlative hitduct quality. A journey that started with the launch of 18K gold watches studded with precious stones. Tanishq soon grew into a 22K gold jeweller who understood the evolving needs and desires of the Indian woman.">....</a> -->
+                              <!-- modal screen -->
+                              <!-- <p class ="text-center text-primary font-weight-bold handcurs">
+                                  <a   data-toggle="modal" data-target="#exampleModalLong">
+                                          <i style="cursor: pointer; color:#007bff" (click)="OnMer(hit.merchantDesc)" class="fas fa-info-circle"></i>
+                                       </a> 
+                              </p> -->
+                         
+                              <!-- Modal -->
+                              
+                          <!-- modal screen -->
+                              
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-2" >
+                            <p class="text-center "></p>
+                            
+                              <!-- modal screen -->
+                              <!-- <p class ="text-center text-primary font-weight-bold handcurs">
+                                  <a   data-toggle="modal" data-target="#exampleModalLong1">
+                                          <i style="cursor: pointer" (click)="Onhit(hit.hitductDesc)" class="fas fa-info-circle"></i>
+                                       </a> 
+                              </p> -->
+                         
+                              <!-- Modal -->
+                              
+                          <!-- modal screen -->
+                              
+                         
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-1" >
+                            <!-- <p class="text-center ">Savings </p> -->
+                            <p class="text-center " ></p>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-2" >
+                            <!-- <p>Additional Offers </p> -->
+                            <p class="text-center" ></p>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-1" ></div>
+                        <div class="col-6 col-sm-4 col-md-1" ></div>
+                    </div>
+                      
+                  </div>
+              </div>
+
+            </ng-template>
+        </ais-hits>
+    <!-- refinement -->
+  <!-- <ais-refinement-list attribute="brand" *ngIf="!srchflag"></ais-refinement-list> -->
+  <!-- pagination -->
+  <!-- <ais-pagination showLast=true *ngIf="!srchflag"></ais-pagination> -->
+
+  </ais-instantsearch>
+
+
+    <!-- Jewellery mobile -->
+
+  <!-- Jewellery savings search -->
+
+  
+
+
+
+
+  <ais-instantsearch class="add1" [config]="{
+    apiKey: 'adeed2b7445812eb85e512942b7fdfb8',
+    appId: 'AEXP59O68X',
+    indexName: 'groceries',
+    routing: true
+  }">
+
+
+  <ais-hits *ngIf="!srchflag">
+        <ng-template let-hits="hits">
+    <!-- Jewellery -->
+<div class="container  taab add1" > 
+    <div class="container" *ngFor="let hit of hits, let i=index">                
+        <div class="row align-items-center border1 clearfix conta" >
+               
+            <div class=" col-4 pad_no col-sm-4 col-md-2" >
+              <div class="deal_thyming">
+                 <img src="{{ hit.imageURL }}" class="img-responsive" width="130" height="90">
+              </div>
+               
+            </div>
+            <div class=" col-8 pad_no col-sm-4 col-md-2  " >
+              <div class="de_mernm"><img src="assets/imgs/fa-logo.png" style="height: 20px"> 
+                <a (click)="OnMer(hit.merchantDesc)" data-toggle="modal" data-target="#exampleModalLong4">  {{ hit.merchantName }}</a>
+
+                 <!-- modal screen -->
+                  <!-- <p class ="text-center text-primary font-weight-bold handcurs">
+                    <a   data-toggle="modal" data-target="#exampleModalLong4">
+                            <i style="cursor: pointer" (click)="OnMer(hit.merchantDesc)" class="fas fa-info-circle"></i>
+                         </a> 
+                </p> -->
+           
+                <!-- Modal -->
+                <div  class="modal fade" id="exampleModalLong4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+                    <div class="modal-dialog  modal-lg" role="document">
+                      <div class="modal-content"   >
+                        <div class="modal-header modheader text-center" style="background-color: #6fad20;  margin-top: -10px">
+                          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Seller</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                       
+                            <div class = "container row1" >
+                                <h4 class = " row1">{{ mdesc }}</h4>
+                            </div>
+                            <!-- <div class="modal-footer">
+                                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                            </div> -->
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+              </div>
+              <div class="de_mernm">
+                <a (click)="OnPro(hit.productDesc)" data-toggle="modal" data-target="#exampleModalLong5">{{ hit.productName }}</a>
+
+                  <!-- modal screen -->
+                <!-- <p class ="text-center text-primary font-weight-bold handcurs">
+                    <a   data-toggle="modal" data-target="#exampleModalLong5">
+                            <i style="cursor: pointer" (click)="OnMer(hit.hitductDesc)" class="fas fa-info-circle"></i>
+                         </a> 
+                </p> -->
+           
+                <!-- Modal -->
+                <div  class="modal fade" id="exampleModalLong5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+                    <div class="modal-dialog  modal-lg" role="document">
+                      <div class="modal-content"   >
+                        <div class="modal-header modheader text-center" style="background-color: #6fad20;  margin-top: -10px">
+                          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Product</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                       
+                            <div class = "container row1" >
+                                <h4 class = " row1">{{ pdesc }}</h4>
+                            </div>
+                            <!-- <div class="modal-footer">
+                                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                            </div> -->
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+                  
+                 
+                
+            <!-- modal screen -->
+            </div>
+             
+             <div class=" col-12 col-sm-4 dis_text col-md-2">
+              <div><b>Savings:</b> {{ hit.savings }}% </div>
+             </div>
+             <div class=" col-12 col-sm-4 dis_text col-md-2">
+              <div><b>Additional Offers :</b> {{ hit.additionalOffers }} </div>
+             </div> 
+             
+             
+            <div class="col-12 col-sm-4 col-md-1" >
+                <a [hidden]="!user || (userA == true)" [routerLink]="['/scheme/addproducts', hit.productType, hit.objectID]" class="btn btn-success" (click)="OnDel()" style="background-color: #6fad20" role="button">Select</a>
+                <a [hidden]="user && (userA == false)" [routerLink]="['/login',i]"class="btn btn-success" style="background-color: #6fad20" role="button">Select</a>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+            </ng-template>
+        </ais-hits>
+    <!-- refinement -->
+  <!-- <ais-refinement-list attribute="brand" *ngIf="!srchflag"></ais-refinement-list> -->
+  <!-- pagination -->
+  <!-- <ais-pagination showLast=true *ngIf="!srchflag"></ais-pagination> -->
+
+  </ais-instantsearch>
+
+
+  
+
+  <!-- Jewellery search -->
+  <div *ngIf="srchflag">
+        
+
+  <div class="container  taab add"> 
+        
+        <!-- header -->
+        <div  class="row border-head clearfix">
+                <div class=" col-6 col-sm-4 col-md-1"></div>
+               <div class=" col-6 col-sm-4 col-md-2 text-center">Deals</div>
+               <div class=" col-6 col-sm-4 col-md-2 text-center">Merchant</div>
+               <div class=" col-6 col-sm-4 col-md-2 text-center">Product</div>
+               <div class=" col-6 col-sm-4 col-md-1 text-center">Savings</div>
+               <div class=" col-6 col-sm-4 col-md-2 ">Additional Offers</div> 
+               <div class=" col-6 col-sm-4 col-md-1"></div>         
+         </div>
+      <!-- header -->
+  <div class="container" *ngFor="let pro of prod1$ | async, let i=index">                
+      <div class="row align-items-center border1 clearfix conta" style="margin-left:35px;margin-right:35px; " >
+        <div class="col-6 col-sm-4 col-md-1" ></div>  
+          <div class=" col-6 col-sm-4 col-md-2" >
+              <img id="space" src="{{ pro.payload.val().imageURL }}" width="130" height="90">
+          </div>
+          <div class=" col-6 col-sm-4 col-md-2  " >
+                <p class="text-center  "><a data-toggle="modal" data-target="#exampleModalLong2" style="cursor: pointer; color:#007bff" (click)="OnMer(pro.payload.val().merchantDesc)" >{{ pro.payload.val().merchantName }}</a></p>
+                   
+           
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header modheader text-center" style="background-color: #6fad20;  margin-top: -10px">
+                                    <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Seller</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                 
+                                      <div class = "container row1" >
+                                          <h4 class = " row1">{{ mdesc }}</h4>
+                                      </div>
+                                      <!-- <div class="modal-footer">
+                                          <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                                      </div> -->
+                                  </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal screen -->
+                
+          </div>
+          <div class="col-6 col-sm-4 col-md-2" >
+              <p class="text-center "><a data-toggle="modal" data-target="#exampleModalLong3" style="cursor: pointer; color:#007bff" (click)="OnPro(pro.payload.val().productDesc)">{{ pro.payload.val().productName }}</a></p>
+              
+                          
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                            <div class="modal-header modheader text-center" style="background-color: #6fad20;  margin-top: -10px">
+                                    <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Product</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                 
+                                      <div class = "container row1" >
+                                          <h4 class = " row1">{{ pdesc }}</h4>
+                                      </div>
+                                      <!-- <div class="modal-footer">
+                                          <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                                      </div> -->
+                                  </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal screen -->
+                
+           
+          </div>
+          <div class="col-6 col-sm-4 col-md-1" >
+              <!-- <p class="text-center ">Savings </p> -->
+              <p class="text-center ">{{ pro.payload.val().savings }}% </p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-2" >
+              <!-- <p>Additional Offers </p> -->
+              <p >{{ pro.payload.val().additionalOffers }} </p>
+          </div>
+          <div class="col-6 col-sm-4 col-md-1" >
+                <a [hidden]="!user || (userA == true)" [routerLink]="['/scheme/addproducts', pro.payload.val().productType, pro.payload.val().index]" class="btn btn-success" (click)="OnDel()" style="background-color: #6fad20" role="button">Select</a>
+                <a [hidden]="user && (userA == false)" [routerLink]="['/login',i]"class="btn btn-success" style="background-color: #6fad20" role="button">Select</a>
+            </div>
+          <div class="col-6 col-sm-4 col-md-1" ></div>
+      </div>
+  </div>
+</div>
+
+<!-- Jewellery -->
+<div class="container  taab add1"> 
+        <div class="container" *ngFor="let pro of prod1$ | async, let i=index">                
+            <div class="row align-items-center border1 clearfix conta" >
+                   
+                <div class=" col-6 col-sm-4 col-md-2" >
+                    <img src="{{ pro.payload.val().imageURL }}" width="130" height="90">
+                </div>
+                <div class=" col-6 col-sm-4 col-md-2  " >
+                      <p class="text-center"><a style="cursor: pointer; color:#007bff" (click)="OnMer(pro.payload.val().merchantDesc)" data-toggle="modal" data-target="#exampleModalLong4">{{ pro.payload.val().merchantName }}</a></p>
+                      
+               
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header modheader text-center" style="background-color: #6fad20;  margin-top: -10px">
+                                        <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Seller</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                     
+                                          <div class = "container row1" >
+                                              <h4 class = " row1">{{ mdesc }}</h4>
+                                          </div>
+                                          <!-- <div class="modal-footer">
+                                              <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                                          </div> -->
+                                      </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal screen -->
+                </div>
+                <div class="col-6 col-sm-4 col-md-2" >
+                    <p class="text-center "><a style="cursor: pointer; color:#007bff" (click)="OnMer(pro.payload.val().productDesc)" data-toggle="modal" data-target="#exampleModalLong5"></a>{{ pro.payload.val().productName }}</p>
+                
+               
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header modheader text-center" style="background-color: #6fad20;  margin-top: -10px">
+                                        <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">About Product</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                     
+                                          <div class = "container row1" >
+                                              <h4 class = " row1">{{ pdesc }}</h4>
+                                          </div>
+                                          <!-- <div class="modal-footer">
+                                              <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+                                          </div> -->
+                                      </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal screen -->
+                </div>
+                <div class="col-6 col-sm-4 col-md-2" >
+                    <p class="text-center ">Savings </p>
+                    <p class="text-center text-info" >{{ pro.payload.val().savings }}% </p>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2" >
+                    <p class="text-center ">Additional Offers </p>
+                    <p class="text-center text-info" >{{ pro.payload.val().additionalOffers }} </p>
+                </div>
+                <div class="col-6 col-sm-4 col-md-1" >
+                        <a [hidden]="!user || (userA == true)" [routerLink]="['/scheme/addproducts', pro.payload.val().productType, pro.payload.val().index]" class="btn btn-success" (click)="OnDel()" style="background-color: #6fad20" role="button">Select</a>
+                        <a [hidden]="user && (userA == false)" [routerLink]="['/login',i]"class="btn btn-success" style="background-color: #6fad20" role="button">Select</a>
+                </div>
+            </div>
+        </div>
+</div>

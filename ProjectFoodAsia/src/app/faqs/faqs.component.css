@@ -1,0 +1,50 @@
+#background {
+    background-color:white;
+    opacity:60%;
+    
+}
+
+.faq_page h2 {
+    text-align: center;
+    font-size: 38px;
+    margin: 17px 0;
+    color: #6fad20;
+}
+
+
+.faq_qus h3 {
+    border-bottom: 1px solid #ccc;
+    font-size: 19px;
+    padding: 6px;
+    background: #ddd;
+    color: #000;
+}
+
+.faq_qus p {
+    font-size: 16px;
+    color: #000;
+}
+.faq_qus {
+    margin-bottom: 7px;
+    overflow: hidden;
+}
+
+.w-100 {
+    height: 350px;
+  
+ }
+ /* .image { 
+   position: relative; 
+   width: 100%; 
+  
+} */
+
+span { 
+   position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%;
+   color:white;
+   
+}
+

@@ -1,0 +1,8 @@
+::ng-deep .mat-dialog-container {
+    z-index: 10000;
+    
+}
+
+::ng-deep .mat-button {
+    background-color: red;
+}

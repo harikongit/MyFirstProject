@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+<div class="image container-fluid" style="font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; padding: 0;">
+<img class="w-100 " src="../../assets/imgs/contact.jpg" alt="">
+<div class="content web" style="text-align:left;padding-top:60px" ><h2>SEEK HELP</h2>
+<h4>EXPLORE MORE</h4></div>
+<div class="content1 mobile" style="text-align:left;padding-top:60px" ><h2>SEEK HELP</h2>
+<h4>EXPLORE MORE</h4></div>
+
+<!-- <div class="col-sm-4 offset-sm-3" >
+<img src="../../assets/imgs/contact1.png" alt="" height=30% width=25% style="padding:5px">
+<img src="../../assets/imgs/contact2.png" alt="" height=30% width=25% style="padding:5px">
+<img src="../../assets/imgs/contact3.png" alt="" height=30% width=25% style="padding:5px">
+</div>  -->
+</div>
+
+
+<div class="container">
+	<div class="cotact_page">
+		<div class="row">
+		<div class="col-md-5">
+			<div class="con_box">
+				<h2>Reach Us</h2>
+				<p>Please use the contact form if you have any questions or requests.</p>
+				<p>We will respond to your message within 24 Hours.</p>
+			</div>
+			<div class="con_box">
+				<h2>General</h2>
+				<p><b><img src="assets/imgs/call_icon.png"> Tel:</b> +1-416-907-4665</p>
+				<p><b><i class="fa fa-envelope" aria-hidden="true"></i> Email:</b> support@antwallet.ca
+
+</p>
+			</div>
+		</div>
+		<div class="col-md-7">
+			
+			<div class="c_form">
+				<form #f="ngForm" (ngSubmit)="OnSubmit(f)">
+					<h2>SEND US A <b>MESSAGE</b></h2>
+ 
+<label style="padding:10px">
+Name:<br> <input type="text" class="col-12 form-control" name="name" size="35" ngModel >
+</label>
+
+<label style="padding:10px">
+Email:<br> <input type="email" class=" col-12 form-control" name="email" size="35" ngModel>
+</label>
+
+<label style="padding:10px">
+Subject:<br> <input type="email" class=" col-12 form-control" name="subject" size="35" ngModel>
+</label>
+
+<label style="padding:10px">
+Message:<br> <textarea type="text" class=" col-12 form-control" name="message" rows="3" cols="50" ngModel></textarea>
+</label>
+<div style="padding:10px">
+<button class="button " style=" background-color: #6fad20" [disabled]="!f.valid" type="submit" value="Submit">Send</button>
+</div>
+</form>
+			</div>
+		</div>
+		</div>
+	</div>
+	
+</div>
+
+ 
+
+
+
+<app-footer></app-footer>

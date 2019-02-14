@@ -1,0 +1,257 @@
+
+<!-- header -->
+<app-header></app-header>
+
+
+
+<!-- steps -->
+<nav >
+      <div class="text-center" style="padding: 10px; font-family: serif">
+          <span class="badge badge-pill badge-success">1</span>   ------------  
+          <span class="badge badge-pill badge-success">2</span>   ------------  
+          <span class="badge badge-pill badge-secondary">3</span>
+        </div>
+        <div class="text-center" style=" margin-top: -15px; padding-bottom: 10px">
+            <span class="text-center" style="font-size: 9pt; font-weight: bold; padding-left: 20px; padding-right: 20px">Select</span>   
+            <span class="text-center" style="font-size: 9pt; font-weight: bold; padding-left: 20px; padding-right: 20px" >Customize</span>  
+            <span class="text-center" style="font-size: 9pt; font-weight: bold; padding-left: 20px; padding-right: 20px">Confirm</span>
+          </div>
+</nav>
+
+<!-- content -->
+<div class="container-fluid back" *ngIf="main==true">
+    <!-- heading -->
+    <div class="pages_title">
+            <h3>Customize Product Subscription</h3>
+    </div>
+
+    
+    
+    
+
+    <div class="product_tiles_des">
+        <div class="row">
+            <div class="col-12 col-sm-3 col-lg-2 pt-1">
+                <div class="prd_thums">
+                        <img  id="space" src="{{ merchantLogo }}" width="130" height="80">
+                </div>
+            </div>
+            <div class="col-12 col-sm-9 col-lg-10 pt-1" >
+                <div class="prds_inerdes">
+                            <strong> Merchant Name  <span style="float:right"> : </span>  </strong> {{ mname }} 
+                    </div>
+                    <div class="prds_inerdes">
+                            <strong> Product Type  <span style="float:right"> : </span>  </strong> {{ type }} 
+                    </div>
+                    <div class="prds_inerdes" [hidden]="!product" >
+                        <strong>Product Selected  <span style="float:right"> : </span> </strong>  {{ pname }} 
+                    </div>
+
+                 </div>
+            
+        </div>
+
+    </div>
+
+    
+          
+    <form class="form" #f="ngForm" (ngSubmit)="OnCnfrm(f)" >
+        
+         
+            <div class="product_tiles_des">
+                    <div class="row">
+                        <div class="col-12 col-sm-5 col-lg-5 pt-1">
+                            <div class="box_prd">
+
+                                    <!-- <div class="row pt-0">
+                                            <div class=" col-sm-12 col-lg-7 col-xl-7 "><label>Subscription Name</label></div> 
+                                            <div class=" col-10 col-sm-5 col-lg-5 ">
+                                                <input name="name" [(ngModel)]="name" ngModel class="nam form-control" required  placeholder="eg., Grocery for weekend"></div>
+                                     </div> -->
+                                     <div class="row pt-0" *ngIf="typ == 'Groceries'">
+                                                <!-- radio toggle -->
+                                                <div class="no_padding col-5 col-sm-5 col-lg-6 col-xl-6 "><label>Payment Term  </label> <b style="float: right;">:</b></div>
+                                                <div id="sel" class="no_padding col-7 col-sm-7 col-lg-5 col-xl-6 btn-group-sm btn-group-toggle " id="group"    required>
+                    
+                                                  <label class="btn btn-outline-success" [class.high]="clickw"  (click)="Calf('Weekly')"   >
+                                                    <input type="radio"  name="freq" [(ngModel)]="freq" value="Weekly" > Weekly
+                                                  </label>
+                                                  <label class="btn btn-outline-success" [class.high]="clickb"  (click)="Calf('Bi Weekly')"   >
+                                                    <input type="radio" name="freq" [(ngModel)]="freq"  value="Bi Weekly" > Bi Weekly
+                                                  </label>
+                                                  <!-- <label class="btn btn-outline-success" [class.high]="clickm"  (click)="Calf('Monthly')"   >
+                                                    <input type="radio"  [(ngModel)]="freq" name="freq" value="Monthly" > Monthly
+                                                  </label> -->
+                                                </div>
+                                              <!-- radio toggle -->
+                                      </div>
+                                       <div class="row pt-0">
+                                                    <div class="col-8 no_padding  col-sm-5 col-lg-6 col-xl-6 "><label>Payment per Term </label> <b style="float: right;">:</b>
+                                                    </div>
+                                                    <div class="col-4 no_padding col-sm-7 col-lg-6 ">
+                                                          <div class="sub_prd_price">
+                                                                ${{ monthlyPay | number }}
+                                                          </div> </div>
+                                       </div> 
+
+                            </div>
+                               
+        
+                                        
+                        </div>
+                        <div class="col-12 col-sm-4 col-lg-4 pt-1"  id="ipadp">
+                                <div class="box_prd">
+                                    <div class="row pt-0">
+                                 <div class="col-8 col-sm-8 no_padding col-lg-8 col-xl-8 prm_obile">
+                                        <label> Promotional value for each voucher  
+                                             </label> <b style="float: right;">:</b>
+                                </div>
+                                <div class="col-4 col-sm-4 no_padding col-lg-4 col-xl-4">
+                                     <div class="sub_prd_price">${{ payr | number }}</div>
+                                </div> 
+                            </div>
+                                <div class="row pt-0"> 
+                                <div class="col-8 col-sm-8 no_padding col-lg-8 col-xl-8" >
+                                        <label>Savings   </label>  <b style="float: right;">:</b>
+                                </div>
+                                <div class="col-4 col-sm-4 no_padding col-lg-4 col-xl-4">
+                                    <div class="sub_prd_price">{{ sav }}%</div>
+                                 </div>   
+                                </div>   
+                              </div>  
+                        </div>
+                       <div class="col-12 col-sm-3 col-lg-3 pt-1" >
+                                    
+                            <div class="row pt-0">
+                                    <div class="col-sm-12  ">
+                                        <div class="privacy_block">
+                                                <a class="edit" role="button" href="#" data-toggle="modal" data-target="#exampleModalLong2" >
+                                                <img src="assets/imgs/increase.png">
+                                                <span>Benefits and Cancellation Policy</span>
+                                            </a>   
+                                        </div>
+                                        <div class="privacy_block">
+                                                <a class="edit"  role="button" href="#" data-toggle="modal" data-target="#exampleModalLong1" >
+                                                <img src="assets/imgs/agreement.png">
+                                                <span>  Terms and Conditions</span>
+                                            </a>   
+                                        </div>
+
+                                        
+                                        
+                                            
+                                       
+                                    </div>
+                                </div>
+                                 
+                        </div>
+                        
+                    </div>
+            
+                </div>
+
+  
+        <!-- group-2 -->
+        <div class="product_tiles_des">
+            <div class="row ">
+                <div class="col-sm-6 col-lg-6" style="color:solid black; font-weight:bold">Payment Method for this Product </div>
+            </div>
+            <div class="row pb-0">
+                <div class="col-sm-6 col-lg-6 ">
+                    <label>Payment Method:
+                        <a [routerLink]="['cardlist']" (click)="OnCard()" *ngIf="cardsta==false" >Choose Payment Option</a>
+                        <label *ngIf="cardsta == true"> {{ cardBrand }} xxxx-{{ cardlast4 }}<a class="edit" [routerLink]="['cardlist']" (click)="OnCard()" style="color: #007bff;" ><b>(Change)</b></a></label> 
+                    </label>
+                </div>
+            </div>
+            <div class="row pt-0">
+                <div class="col "  style="font-size: 8pt">Note: The same payment option is used for all future payments for this subscription. Go to My Payments in future to change this. </div>
+            </div>
+        </div>
+
+
+        <!-- group-3 -->
+        <!-- <div class="form-group">
+            <div class="row pt-0">
+                <div class="col-sm-6 col-lg-6 pt-0" style="color:solid black; font-weight:bold">Beneficiary Details </div>
+            </div>
+            <div class="row pt-0">
+                <div class="col-sm-6 col-lg-6 pt-0">Beneficiary:
+                    <a [routerLink]="['beneficiary']" *ngIf="bensta==false"  (click)="OnBen(null)" required> Choose Beneficiary</a>
+                    <label *ngIf="bensta==true"   required>  {{ gname }}<a class="edit" (click)="OnBen(gname)" [routerLink]="['beneficiary']" style="color: #007bff;" ><b>(Change)</b></a></label>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- button -->
+        <div class="button">
+            <button type="button"  class="btn btn-default" (click)="OnBack()"  style="background-color: black; color: white" >Back</button>
+            <button type="submit" [disabled]="clickenable == false" class="btn btn-success" style="background-color: #6fad20; color: white"  >Continue</button>
+        </div>
+        <div style="text-align: right; font-size: 11pt"><label >You can review this subscription before its final</label></div>
+    </form>
+
+    
+
+    <!-- Terms And Conditions -->
+<div  class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Terms And Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container row1" >
+                <h4 class="row1">{{ tnc }}</h4>
+            </div>
+            <!-- <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Benefits And Cancellation -->
+<div  class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Benefits And Cancellation Policy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container " >
+                <h4 class="row1">{{ bnc }}</h4>
+            </div>
+            
+        </div>
+        <!-- <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+        </div> -->
+      </div>
+    </div>
+</div>
+</div>
+
+
+
+<!-- Beneficiary and CardList links -->
+<app-beneficiary *ngIf="bene==true" [name]=gname ></app-beneficiary>
+<app-cardlist [Id]=cardId  *ngIf="card == true"></app-cardlist>
+
+
+
+<!-- router -->
+<!-- <router-outlet  *ngIf="bene==true || card == true" ></router-outlet> -->
+
+
+<!-- footer -->
+<app-footer *ngIf="main==true" style="bottom:0; width:100%; padding-top: 10px" ></app-footer>

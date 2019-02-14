@@ -1,0 +1,82 @@
+/* navbar2 */
+.navbar div a   {
+    color: #fff;
+    /* padding-left: 25px; 
+    padding-right: 25px; */
+    text-align: center;
+}
+
+
+/* highlighting with green line */
+.high {
+    
+    border-bottom: 2px solid #6fad20;
+} 
+
+
+/* css added: */
+
+
+@media (min-width: 1200px)  {
+
+  .navbar div a {
+    padding-left: 25px;
+    padding-right: 25px; 
+     
+  }
+
+.nav2-ml-md-push {
+margin-left: 285px;
+}
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+
+ .navbar div a {
+    padding-left: 15px; 
+    padding-right: 15px; 
+  } 
+
+.nav2-ml-md-push {
+margin-left: 250px;
+}
+}
+
+@media (min-width: 750px) and (max-width: 1000px) {
+
+  .navbar div a {
+    padding-left: 15px; 
+    padding-right: 15px; 
+  } 
+
+  .nav2-ml-md-push {
+  margin-left: 130px;
+  }
+  }
+
+.edit{
+    cursor: pointer;
+    
+}
+
+#web{
+    display: block;
+    padding-left: 100px;
+  }
+  
+  @media (max-width: 770px) {
+    #web{
+      display: none;
+    }
+  }
+  
+  
+  #mobile{
+    display: block;
+   
+  }
+  @media (min-width: 770px) {
+    #mobile{
+      display: none;
+    }
+  }

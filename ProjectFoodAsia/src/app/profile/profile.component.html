@@ -1,0 +1,103 @@
+<!-- header -->
+<app-header></app-header>
+
+<!-- <div class="container-fluid navbar navbar-expand-md navbar-dark" style="background-color: black; " ></div> -->
+
+<!-- content -->
+<div class="container-fluid" style="background-color:#d7d7d7; padding-top: 15px; font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif; ">
+    <div class="container">
+        <!-- <div align="right"><b>Hi {{ firstnam }} {{ lastnam }} </b>  |   <a   style="color: red; cursor: pointer;" (click)="OnLogOut()">Sign Out</a>  </div> -->
+
+            <form  #f="ngForm" (ngSubmit)="OnDet(f)">
+
+                <div class="form_secf">
+                    <div class="fsc_title">Personal Info </div>
+                    <div class="form_felds">
+                        <div class="row">
+                            <div class="col-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                     <input  type="text" class="form-control" name="firstnam" [(ngModel)]="firstnam" value="{{ firstnam }}" required>
+                                </div>
+
+                            </div>
+                             
+                            <div class="col-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input  type="text" class="form-control" name="lastnam" [(ngModel)]="lastnam" value="{{ lastnam }}" required>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" class="form-control" name="custemail"  [(ngModel)]="custemail"  value="{{ custemail }}" disabled>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label>Mobile Number</label>
+                                    <input  type="text" class="form-control" name="phnumber" [(ngModel)]="phnumber" value="{{ phnumber }}" required>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-sm-4 col-md-4">
+                                <div class="form-group">
+                                    <label>Date Of Birth</label>
+                                    <div class="input-group">
+                        <input  class="form-control " placeholder="yyyy-mm-dd" class="date form-control"  readonly name="DOB" [(ngModel)]="DOB" ngbDatepicker #d="ngbDatepicker" >
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                                <img src="../assets/imgs/calendar.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                            </button>
+                        </div>
+                    </div>
+                                </div>
+
+                            </div>
+                             <div class="col-12 col-sm-4 col-md-4">
+                                 <label>Gender</label>
+                             <input type="radio" name="gender" [(ngModel)]="gender" value="male" (click)="OnTrue()"> Male 
+                       <input type="radio" style="margin-left: 50px;" name="gender" [(ngModel)]="gender" value="female" (click)="OnTrue()"> Female 
+                   </div>
+                   <div class="col-md-12 text-right"><button type="submit"  class="btn btn-success" style=" background-color: #6fad20">Update</button></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                  
+                 
+ <!-- <input  type="Date" class="form-control" name="DOB" [(ngModel)]="DOB" ngModel required> -->
+                
+                    
+                
+              </form>
+
+            <!-- Address -->
+            <app-address></app-address>
+
+            <!-- Change Password -->
+
+            <div class="form_secf">
+                    <div class="fsc_title">Change Password</div>
+                    <div class="form_felds">
+                        <button class="btn btn-success" style="background-color: #6fad20" (click)="OnReset()">Reset Password</button>
+                     </div>
+              </div>          
+            <div style="padding:10px">
+                <div style="text-align: right">
+                    <button  class="btn btn-default" style="background-color: black; color: white; " (click)="OnBack()">Back</button>
+                </div>
+                                 
+            </div> 
+     </div> 
+</div> 
+
+
+ <!-- footer -->
+ <app-footer style=" bottom: 0; width: 100%"></app-footer>
+ 
+ 

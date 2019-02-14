@@ -1,0 +1,51 @@
+<!-- header -->
+<app-header></app-header>
+
+<!-- content -->
+<div class="container order_con" style="padding: 40px; padding-bottom: 20px; min-height: 515px; ">
+
+    <div class="row" style="padding:10px; ">
+      <div class="col-md-6 offset-md-3"><h3 align="center"><b>My Order History</b></h3></div>
+      <!-- <div class="col-md-3"><i class="fa fa-search"></i><input id="it" type="text" placeholder="Enter ID or product Name"></div> -->
+    </div>
+  <!-- <div style="min-height: 250px"> -->
+  <div class="container" *ngIf="order">
+    <div class="order_hist">
+      <table class="table table-responsive"  >
+      <thead>
+          <tr>
+              <th><span  scope="col">Deals</span></th>     
+              <th><span  scope="col">Product Description</span></th>
+              <th><span  scope="col">Payment Done</span></th>
+              <th><span  scope="col">Time Period</span></th>
+              <th><span  scope="col">Other Info</span></th>
+              
+          </tr>
+      </thead>
+      <tbody>
+          <tr  *ngFor="let ord of order, let i = index">
+     
+              <td><img src="{{ ord.imageURL }}" height="75" width="80"></td>
+              <td><a href="" style=" font-size: 10pt;">{{ ord.merchantName }} </a><br><span style=" font-size: 10pt;">{{ ord.name }}</span></td>
+              <td><span style=" font-size: 10pt;"> <label style="font-weight: bold">Subscription ID:</label> {{ ord.ActNo }} <br> <label style="font-weight: bold">Amount:</label> ${{ ord.pay }} <br> <label style="font-weight: bold">Card#: </label> xxxx-{{ ord.cardlast4 }}</span></td>
+              <td><span style=" font-size: 10pt;"> <label style="font-weight: bold">StartDate:</label> {{ ord.strtdate }} <br> <label *ngIf="ord.SubStatus == 'Cancelled'"><b>EndDate</b>: {{ ord.enddate }}</label></span></td>
+              <td><span style=" font-size: 10pt;"><label style="font-weight: bold">Savings:</label> {{ ord.savings }}% <br> <label style="font-weight: bold">Offer:</label> {{ ord.additionalOffers }} </span></td>
+          </tr>
+      </tbody>
+
+    </table>
+    </div>
+
+    
+    <div style="text-align: right; padding-top: 10px; padding-bottom: 10px ">
+        <button  class="btn btn-default" style="background-color: black; color: white; " (click)="OnBack()">Back</button>
+    </div>  
+  </div>
+  
+</div>
+  
+<!-- </div>  -->
+
+
+  <!-- footer -->
+<app-footer class="footer" style="bottom:0; width:100%; "></app-footer>

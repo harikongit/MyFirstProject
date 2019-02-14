@@ -1,0 +1,320 @@
+
+
+
+<!-- My Subscriptions -->
+<div class="container-fluid" id="main" >
+
+   <div class="page_title text-center">
+      <h2>My Subscriptions</h2>
+    </div>
+
+
+<!-- message if no plans -->
+<p *ngIf="noplansflag == true" style="font-size: 12pt; text-align: center; " >You have not subscribed to any products yet. Go to <a [routerLink]="['/scheme/addproducts']">All Deals</a> to subcribe a product.</p>
+
+    <div class="container subc_tabs" *ngIf="noplansflag == false "  id="filter">
+        <div class="row" alink="color: #066b24;">
+            <div [class.high1]="clickA" style="cursor:pointer" class="sub_tabs col-4 col-sm-2  col-lg-2  offset-sm-3 offset-lg-3" ><a [class.high]="clickA" (click)="OnFilter('All')">All</a></div>
+            <!-- <div [class.high1]="clickW" style="cursor:pointer" class="col-sm-3  col-lg-2" ><a  (click)="OnFilter('Upcoming')">Upcoming</a></div> -->
+            <div [class.high1]="clickO" style="cursor:pointer" class="sub_tabs col-4 col-sm-2  col-lg-2" ><a  (click)="OnFilter('In Progress')">In Progress</a></div>
+            <!-- <div [class.high1]="clickG" style="cursor:pointer" class="col-sm-3  col-lg-2" ><a  (click)="OnFilter('Completed')">Completed</a></div> -->
+            <div [class.high1]="clickC" style="cursor:pointer" class="sub_tabs col-4 col-sm-2  col-lg-2" ><a  (click)="OnFilter('Cancelled')">Cancelled</a></div>
+        </div>
+    </div>
+
+
+<!-- message if no upcoming or any other plans-->
+<p *ngIf="plansflag == true" style="font-size: 12pt; text-align: center; " >You don’t have any {{ text }} subscriptions.</p>
+  <div class="container "  *ngFor="let plan of plans "> 
+
+   
+     <div class="subcr_outer">
+                <div class="subcr_inner">
+                  <div class="row">
+                    <div class="col-md-12">
+       
+                   
+                        <div class="sub_head">
+                           <div class="row">
+                             <div class=" col-12 col-sm-6 text-left" >
+                                <span class="sub_mernames" style=" font-size: 14pt; font-weight: normal; text-transform: capitalize"> <b> <img src="assets/imgs/fa-logo.png">  {{ plan.merchantName }} </b>-    {{ plan.productName }}</span>
+                               <!-- <span style="font-weight: bold;  font-size: 11pt"> {{ plan.merchantName }}    </span>   -->
+                               </div>
+
+                        
+
+                                <div class="col-12 col-sm-6 " style=" font-size: 11pt; " id="right">
+                                    <b>Payment Frequency:</b> <span style="color:#6fad20; text-transform: capitalize"> {{plan.freq }}</span>
+                                </div>
+                           </div>
+                       </div>
+
+
+                      <div class="row pad1">
+      
+                  <div class=" col-12 col-md-3 text-center">
+                      <!-- <div class="col-12" style="font-weight: bold;  font-size: 10pt; ">   {{ plan.merchantName }}</div> -->
+                      <img src="{{ plan.imageURL }}" height="100" width="150" >
+                      <div><a class="edit" style="font-size: 7pt ; color: #007bff" role="button" href="#" data-toggle="modal" data-target="#exampleModalLong1" (click)="OnTerm(plan.termsAndconditions)" >Product Details with T's and C's</a></div>
+                  </div>
+
+                  
+                 
+
+                    <div class="col-12 col-md-3 subcribe_info" >
+                      <label> <i class="fa fa-tags" aria-hidden="true"></i><b>Subscription ID:</b> {{ plan.ActNo }} </label>
+                      <label><i class="fa fa-calendar" aria-hidden="true"></i><b>Start Date : </b> {{ plan.strtdate }}  </label>
+
+                       
+                        <div class=" text-left"><a class="edit" style=" font-size: 10pt; color: #007bff" role="button" href="#" data-toggle="modal" data-target="#exampleModalLong2" (click)="OnTerm(plan.benefitsAndcancellation)"> Benefits & Cancellation Policy</a></div>  
+                    </div>
+ 
+                     <div class="col-12 col-md-3 subcribe_info" >
+                      <label><i class="fa fa-credit-card" aria-hidden="true"></i><b>Payment Amount : </b>${{ plan.monthlyPay | number }}  </label>
+                       <label *ngIf="plan.SubStatus == 'In Progress'" > <i class="fa fa-calendar" aria-hidden="true"></i> <b>Next Payment Date:</b> {{ plan.nxtDueDate }}</label>
+                          
+                     </div>
+
+                      <div class="col-12 col-md-3 subcribe_info" >
+
+
+                        <label *ngIf="plan.SubStatus == 'In Progress'" ><i class="fa fa-hourglass-half" aria-hidden="true"></i> <b>Subscription Status : </b><span style="color: #6fad20"> {{ plan.SubStatus }}</span>   </label>
+                        <label *ngIf="plan.SubStatus == 'Cancelled'"><i class="fa fa-hourglass-half" aria-hidden="true"></i> <b>Subscription Status : </b> <span style="color:red"> {{ plan.SubStatus }}</span>   </label>
+                         
+                        <label><i class="fa fa-trophy" aria-hidden="true"></i> <b>Goal Savings:</b> {{ plan.savings }}%</label>
+
+
+
+                              <div class="pad1" *ngIf="plan.goalStatus == 'null'">
+                        
+                        <label><i class="fa fa-hourglass-half" aria-hidden="true"></i><b>Subscription Status:</b> {{ plan.SubStatus }}  </label>
+                         <label><i class="fa fa-trophy" aria-hidden="true"></i> <span id="save2"><b>Goal Savings:</b> {{ plan.savings }}%</span></label>       
+
+                
+                                 
+                            </div>
+
+
+                              <div *ngIf="plan.goalStatus == 'Refunded' || plan.goalStatus == 'Redeemed' || plan.goalStatus == 'Ready to Redeem'">
+        
+
+
+                <!-- <div class="sub_proces">
+                 
+                    <div class="sub_text" style="color: #000;"> {{ plan.goalStatus }} </div>
+                     <div class="sub_text" style="    color: #f00;"></div>
+                </div> -->
+                
+                 
+            </div>
+
+
+                      </div>  
+              </div>
+
+                  
+
+                  
+            
+
+
+                </div>
+                  </div>
+      
+
+            </div>
+      </div>
+
+  
+
+
+  <!-- Terms And Conditions -->
+<div  class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Terms And Conditions</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container row1" >
+                <h4 class = " row1">{{ tnc }}</h4>
+            </div>
+            <!-- <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- Benefits And Cancellation -->
+<div  class="modal fade" id="exampleModalLong2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true" >
+    <div class="modal-dialog  modal-lg" role="document">
+      <div class="modal-content"   >
+        <div class="modal-header modheader text-center" style="background-color: #6fad20">
+          <h5 class="modal-title  " style="color: white " id="exampleModalLongTitle">Benefits And Cancellation Policy</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+       
+            <div class = "container row1" >
+                <h4 class = " row1">{{ tnc }}</h4>
+            </div>
+            <!-- <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal"> Close </button>
+            </div> -->
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- beneficiary details -->
+<div class="modal fade" id="exampleModalLong5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header modheader" style="background-color: #6fad20">
+                <h5 class="modal-title " style="color: white " id="exampleModalLongTitle">Edit Beneficiary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <!-- beneficiary List -->
+           <div class="container" *ngIf="benefs">
+                <app-messages></app-messages>
+                <h5 >My Beneficiary Details:</h5> <br>
+                <div style="border:1px solid #494848; background-color:rgb(243, 239, 239); padding: 10px">
+                    <div class="row " style="padding: 10px" *ngFor="let ben of benefs; let i=index">
+                        <div class="col-1 col-sm-1 col-md-1  ">
+                            <input type="radio" name="gname" [(ngModel)]="gname" value="{{ ben.gname }}"  (click)="OnSelect(ben)">
+                        </div>
+                        <div class="col-5 col-sm-5">
+                            <b>{{ ben.gname }} - {{ ben.relation }}</b>
+                        </div>
+                        <div class="col-5 col-sm-5" >
+                            <a class="edit" style="color:#007bff" (click)="OnEdit(ben,i)" >Edit</a> or <a (click)="OnDelete(ben)" class="edit" style="color: red" >Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <label style="font-size: 8pt">*** Please select one option and click Done</label>
+            </div>
+            <br>
+    
+    
+            <!-- Beneficiary Detail -->
+            <div class="container" style="padding-bottom: 10px">
+                    <div style="text-align: right">
+                            <!-- <button  class="btn btn-default" style="background-color: black; color: white" data-dismiss="modal">Back</button> -->
+                            <button  class="btn btn-primary" [disabled]="!selectedBen" style="background-color: #6fad20"  (click)="OnDone()" data-dismiss="modal">Done</button>
+                            
+                        </div>
+                        <button  class="btn btn-primary" (click)="addBen()">Add New Beneficiary</button>
+                    
+               
+    
+                <!-- Beneficiary Edit -->
+                <div  *ngIf="edit == true" style="padding-top: 20px" >
+                        <h6>Editing Beneficiary : {{ editBen.gname }}</h6>
+    
+                    <!-- beneficiarydetail -->
+                    
+
+                    <form [formGroup]="benForm" (ngSubmit)="OnUpdate()" >
+    
+                         <!-- Group1 -->
+              <div class="row form-group">
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Given Name</b> </label>
+                        <input type="text" class="form-control" formControlName="gname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                      </div>
+                    
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Last Name</b> </label>
+                        <input type="text" class="form-control" formControlName="lname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                    </div>
+                    
+                
+                
+                  <div class="col-sm-3 ">
+                      <label><b>Relation</b></label>
+                      <input type="text" formControlName="relation" required class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  <div class="col-sm-3">
+                      <label> <b> Address</b></label>
+                      <input type="text" formControlName="address"  class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  
+              </div>
+        
+                        <div align="right" style="padding-bottom: 10px ">
+                            <button type="submit" [disabled]="!benForm.valid" style="background-color: #6fad20" class="btn btn-success ">Update</button>
+                        </div>
+                    </form>
+                 
+                </div>
+        
+                <!-- Beneficiary Add -->
+                <div  *ngIf="add == true" style="padding-top: 20px" >
+                    
+    
+                    <!-- beneficiarydetail -->
+                   
+                    
+                        <form [formGroup]="benForm" (ngSubmit)="onSubmit()">
+                    
+                             <!-- Group1 -->
+              <div class="row form-group">
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Given Name</b> </label>
+                        <input type="text" class="form-control" formControlName="gname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                      </div>
+                    
+                    <div class="col-12 col-sm-3 ">
+                        <label><b>Last Name</b> </label>
+                        <input type="text" class="form-control" formControlName="lname" required style="background-color:rgb(243, 239, 239);margin-right:200px">
+                        <div *ngIf="formErrors.name" class="notification is-danger">{{ formErrors.name }}</div>
+                    </div>
+                    
+                
+                
+                  <div class="col-sm-3 ">
+                      <label><b>Relation</b></label>
+                      <input type="text" formControlName="relation" required class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  <div class="col-sm-3">
+                      <label> <b> Address</b></label>
+                      <input type="text" formControlName="address"  class="form-control" style="background-color:rgb(243, 239, 239);margin-right:200px">
+                  </div>
+                  
+              </div>
+        
+                            <div align="right" style="padding-bottom: 10px ">
+                                <button type="submit" [disabled]="!benForm.valid" style="background-color: #6fad20" class="btn btn-success ">Save</button>
+                            </div>
+                        </form>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div> 
+
+
+
+
+<!-- footer -->
+<app-footer  class="footer" style="bottom:0; width:100%;  "></app-footer>
+

@@ -1,0 +1,146 @@
+.navbar-toggle {
+  border-color: transparent;
+  color: #fff !important;
+} 
+.site_head {
+    background: #fff;
+}
+.img-responsive {
+  height: 55px;
+  width: 180px;
+  
+}
+.navbar-brand {
+    padding: 0;
+}
+.navbar-brand img {
+    object-fit: contain;
+}
+.navbar-light {
+   padding-bottom: -2px;
+    margin-bottom: -2px;
+}
+.navbar div .nav-link   {
+  color: #000 !important;
+} 
+
+
+@media (max-width: 768px) {
+div span {
+display: none;
+}
+}
+
+.button {
+position: relative;
+right: 60px;
+width: 25px;
+/* margin-top: -10px; */
+/* margin-right: 8px; */
+/* margin-left: -15px; */
+border: solid 1px white;
+
+} 
+
+.web{
+display: block;
+/* padding-left: 30px; */
+}
+
+@media (max-width: 650px) {
+.web{
+  display: none;
+}
+
+/* #margin{
+  margin-left: -70px;
+} */
+}
+
+
+.mobile{
+display: block;
+/* padding-left: 75px; */
+}
+@media (min-width: 650px) {
+.mobile{
+  display: none;
+}
+/* #margin{
+  margin-left: 10px;
+} */
+}
+
+
+
+@media(min-width: 1200px){
+.drop{
+  padding-right: 50px;
+}
+}
+
+@media(min-width: 700px) and (max-width: 1200px){
+.drop{
+  padding-right: 60px;
+}
+}
+
+
+form.web .btn-default{
+margin-right: -20px;
+}
+
+form.mobile{
+margin-right: -50px;
+}
+
+.edit{
+cursor: pointer;
+
+}
+
+
+form button:hover{
+  background-color: white;
+  color: black;
+}
+
+
+form button{
+  background-color: #057c9b;
+  color: white;
+}
+
+.highl {
+  background-color: white;
+  color: black;
+}
+
+
+
+/* mobile view dropdown */
+
+@media(max-width: 320px){
+  
+  .mobile .dropdown-menu{
+    margin-left: 130px;
+    
+  }
+}
+
+@media(min-width: 321px) and (max-width: 375px){
+    
+  .mobile .dropdown-menu{
+    margin-left: 170px;
+    
+  }
+}
+
+@media(min-width: 376px) and (max-width: 650px){
+   
+  .mobile .dropdown-menu{
+    margin-left: 220px;
+    
+  }
+
+}

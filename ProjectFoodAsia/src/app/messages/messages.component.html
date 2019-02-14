@@ -1,0 +1,24 @@
+<div *ngIf="messageService.message != null ">
+  
+  <!-- Alert -->
+  <div style="border: red 1px solid; background-color:rgb(243, 239, 239); padding: 5px; border-radius: 2px" *ngIf="messageService.message.flag == 'red'">
+  <!-- <h5 >Message</h5> -->
+  
+  <div > {{ messageService.message.message }} </div>
+  <br>
+  <div style="text-align: center; padding-bottom: 5px">
+       <button class="clear  btn btn-default" style="background-color: red; color: white"  (click)="messageService.clear()">Ok</button>
+  </div>
+</div>
+
+<!-- Success -->
+<div style="border: #6fad20 1px solid; background-color:rgb(243, 239, 239); padding: 5px; border-radius: 2px" *ngIf="messageService.message.flag == 'green'">
+    <!-- <h5 >Message</h5> -->
+    
+    <div > {{ messageService.message.message }} </div>
+    <br>
+    <div style="text-align: center; padding-bottom: 5px">
+         <button class="clear  btn btn-default" style="background-color: #6fad20; color: white"  (click)="messageService.clear()">Ok</button>
+    </div>
+  </div>
+</div>

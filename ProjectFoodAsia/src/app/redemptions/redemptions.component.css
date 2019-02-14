@@ -1,0 +1,283 @@
+
+/* .container{
+    min-height: 455px;
+} */
+
+#main {
+    padding-top: 30px;
+    /* background-color: #ebebeb; */
+    background-color: #ebebeb;
+    padding-bottom: 20px;
+    min-height: 455px;
+   
+}
+.page_title{ display: none; }
+.pop_tables th {
+    padding: 9px 0px;
+}
+.pop_tables {
+    display: table;
+    width: 100% !important;
+}
+.sub_mernames img {
+    height: 25px;
+}
+.pop_tables {
+    font-size: 13px;
+}
+.subcribe_info {
+    text-align: left;
+}
+.vc_used {
+    position: relative;
+    padding: 5px;
+}
+
+.usd_txt {
+    background: rgba(255, 255, 255, 0.81);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 9;
+    left: 0;
+    border: 1px solid #d4d4d4;
+    color: #000;
+    font-weight: bold;
+    line-height: 120px;
+    font-size: 20px;
+}
+.subc_tabs {
+    border: 1px solid #6fad20;
+    background: rgba(111, 173, 32, 0.21);
+    padding: 6px 0;
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: 2%;
+}
+
+
+.sub_tabs{ position: relative; text-align: center; }
+
+.sub_tabs.high1:after {
+   width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #6fad20;
+    content: "";
+    position: absolute;
+    bottom: -17px;
+    left:5.5rem;
+}
+
+
+.subcr_outer {
+    background: #fff;
+    margin-left: -14px;
+    margin-right: -14px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.subcr_inner {
+    border: 1px solid rgba(111, 173, 32, 0.55);padding-top: 10px;
+}
+.voch_card {
+    border: 2px dashed #000;
+    display: inline-block;
+    padding: 0 14px;
+}
+
+.sub_head {
+    padding: 5px 15px;
+    border-bottom: 1px solid rgba(111, 173, 32, 0.5607843137254902);
+}
+.subcribe_info label {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.subcribe_info  i {
+    margin-right: 5px;
+    text-align: center;
+    width: 20px;
+}
+.sub_proces {
+    text-align: center;
+}
+.sub_text{border: 0;
+    margin-bottom: 6px;
+    border-radius: 25px;
+    padding: 5px 0;
+    font-weight: bold;
+    color: #6fad20;
+    text-decoration: underline;}
+    
+
+    .sub_mernames b {
+        color: #6fad20;
+    }
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.pad1 {
+    margin-top: 5px;      
+}
+.borders {
+   background-color: #d7d7d7;
+}
+.border2 {
+   padding:10px;
+}
+
+.border-bar{
+    border: solid 1px green;
+    border-radius: 10px;
+    background-color: #ebebeb;}
+
+.border-bar1{
+    border-radius: 10px;
+    border: solid 1px grey;
+}
+
+.coupon {
+    border: 3px dashed black;
+ 
+    border-radius: 15px;
+    font-family: 'karla', 'Roboto','Open Sans Condensed', 'karla',sans-serif;
+    font-weight: 300;
+    margin-top: 5px; 
+    margin-bottom: 5px;
+  }
+
+  .coupon #head {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* min-height: 30px; */
+    float: right;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .coupon #head img {
+    font-size: 30px;
+    height: 40px;
+    margin-top: 5px;
+  }
+  
+  .couponbody {
+    /* padding: 15px 0px; */
+    font-size: 15px;
+  }
+  
+  .couponimage {
+    opacity: 1;
+  }
+
+  .card-footer {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 12px;
+      background-color: rgb(61, 61, 61);
+      color: white 
+  }
+
+  .card{
+      background-color: #ebebeb;
+  }
+
+  .mask{
+      opacity: 0.4;
+
+  }
+
+ 
+
+#filter div a.active{
+    color: #044b19;
+}
+
+#filter div a:hover{
+    color: #044b19;
+}
+
+.high1{
+    color: #044b19;
+    font-weight: bold;
+    font-size: 13pt;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+
+    .sub_tabs.high1:after{
+        left: 3.3rem;
+    }
+    .subcribe_info label {
+    font-size: 12px !important;
+    }
+    .pop_tables{
+    display: block;
+    width: 100% !important;
+}
+.pop_tables th[_ngcontent-c4] {
+    padding: 9px 3px;
+}
+
+.sub_head .text-right {
+    text-align: center !important;
+}
+
+
+
+}
+
+@media only screen and (max-width: 767px) {
+    
+     .subcribe_info label{ display: block; }   
+
+.page_title{ display: block; }
+    .sub_tabs.high1:after {
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 8px solid #6fad20;
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 3.3rem;
+}
+
+span.sub_mernames {
+    text-align: center;
+    display: block;
+    font-size: 16px !important;
+}
+
+.sub_head {
+    text-align: center;
+}
+.subcribe_info {
+    padding-left: 8%;
+}
+.pop_tables{
+    display: block;
+    width: 100% !important;
+}
+
+.pop_tables th[_ngcontent-c4] {
+    padding: 9px 3px;
+}
+.sub_head .text-right {
+    text-align: center !important;
+}
+.sub_tabs {
+    padding: 0 2px;
+}
+
+}
